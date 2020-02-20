@@ -1,13 +1,12 @@
 name: Deploy Storybook to GitHub Pages
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:	
       - master
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
       steps:
       - name: Checkout
