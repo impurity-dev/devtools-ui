@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DevtoolsUiLibraryComponent } from './devtools-ui-library.component';
+import { DevtoolsUiComponent } from './devtools-ui.component';
 
-describe('DevtoolsUiLibraryComponent', () => {
-  let component: DevtoolsUiLibraryComponent;
-  let fixture: ComponentFixture<DevtoolsUiLibraryComponent>;
+describe('DevtoolsUiComponent', () => {
+  let component: DevtoolsUiComponent;
+  let fixture: ComponentFixture<DevtoolsUiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DevtoolsUiLibraryComponent ]
+      declarations: [ DevtoolsUiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DevtoolsUiLibraryComponent);
+    fixture = TestBed.createComponent(DevtoolsUiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

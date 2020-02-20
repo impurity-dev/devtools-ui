@@ -26,6 +26,10 @@
       "devtools-ui-library": [
         "dist/devtools-ui-library/devtools-ui-library",
         "dist/devtools-ui-library"
+      ],
+      "devtools-ui": [
+        "dist/devtools-ui/devtools-ui",
+        "dist/devtools-ui"
       ]
     }
   },

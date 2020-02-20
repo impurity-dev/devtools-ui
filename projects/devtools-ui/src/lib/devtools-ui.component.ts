@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-devtools-ui-library',
+  selector: 'lib-devtools-ui',
   template: `
     <p>
-      devtools-ui-library works!
+      devtools-ui works!
     </p>
   `,
   styles: []
 })
-export class DevtoolsUiLibraryComponent implements OnInit {
+export class DevtoolsUiComponent implements OnInit {
 
   constructor() { }
 
