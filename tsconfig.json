@@ -17,7 +17,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "lib": [
+        "dist/lib/lib",
+        "dist/lib"
+      ],
+      "devtools-ui-library": [
+        "dist/devtools-ui-library/devtools-ui-library",
+        "dist/devtools-ui-library"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
