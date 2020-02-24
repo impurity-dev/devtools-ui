@@ -14,9 +14,10 @@ cache:
 
 install:
   - npm install
+  - npm install -g yarn
 
 script:
-  - npm run build-storybook
+  - yarn build-storybook
 
 deploy:
   provider: pages
