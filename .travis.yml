@@ -18,7 +18,7 @@ install:
 
 script:
   - yarn lint
-  - yarn build --base-href https://impurity-dev.github.io/devtools-ui/
+  - yarn build-storybook
 deploy:
   provider: pages
   skip_cleanup: true
