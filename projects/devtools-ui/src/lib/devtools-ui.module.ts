@@ -1,5 +1,5 @@
-import { PagesModule } from './pages/pages.module';
-import { ComponentsModule } from './components/components.module';
+import { PageModule } from './page/page.module';
+import { ComponentModule } from './component/component.module';
 import { NgModule } from '@angular/core';
 
 
@@ -7,12 +7,12 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [],
   imports: [
-    ComponentsModule,
-    PagesModule
+    ComponentModule,
+    PageModule
   ],
   exports: [
-    ComponentsModule,
-    PagesModule
+    ComponentModule,
+    PageModule
   ]
 })
 export class DevtoolsUiModule { }
