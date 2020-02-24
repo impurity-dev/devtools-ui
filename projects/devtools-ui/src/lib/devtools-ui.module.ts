@@ -1,12 +1,18 @@
+import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
 import { NgModule } from '@angular/core';
-import { DevtoolsUiComponent } from './devtools-ui.component';
 
 
 
 @NgModule({
-  declarations: [DevtoolsUiComponent],
+  declarations: [],
   imports: [
+    ComponentsModule,
+    PagesModule
   ],
-  exports: [DevtoolsUiComponent]
+  exports: [
+    ComponentsModule,
+    PagesModule
+  ]
 })
 export class DevtoolsUiModule { }

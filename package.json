@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "start-storybook -p 6006",
+    "build": "ng build devtools-ui",
+    "build:storybook": "build-storybook -c .storybook -o dist/storybook",
+    "test": "ng test devtools-ui",
     "test:ci": "npm test -- --sourceMap=false --browsers=ChromeHeadless --watch=false",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o dist-storybook"
+    "lint": "ng lint devtools-ui",
+    "e2e": "ng e2e devtools-ui"
   },
   "private": true,
   "dependencies": {
