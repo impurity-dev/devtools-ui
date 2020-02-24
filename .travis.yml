@@ -14,10 +14,10 @@ cache:
 
 install:
   - npm install
-  - npm install -g yarn
 
 script:
-  - yarn build-storybook
+  - npm run build-storybook
+
 deploy:
   provider: pages
   skip_cleanup: true
