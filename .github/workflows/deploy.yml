@@ -14,10 +14,12 @@ jobs:
               uses: actions/checkout@v2
               with:
                 persist-credentials: false
+
             - name: Build Storybook
               run: |
                   npm install
                   npm run build-storybook
+
             - name: Deploy Storybook
               uses: JamesIves/github-pages-deploy-action@releases/v3
               with:
