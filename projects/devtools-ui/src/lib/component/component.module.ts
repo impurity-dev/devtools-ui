@@ -6,6 +6,9 @@ import { LinkComponent } from './link/link.component';
   declarations: [LinkComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    LinkComponent
   ]
 })
 export class ComponentModule { }

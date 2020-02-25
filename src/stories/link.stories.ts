@@ -1,22 +1,21 @@
+import { LinkComponent } from 'devtools-ui';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import { Button } from '@storybook/angular/demo';
-
 export default {
   title: 'Button',
-  component: Button,
+  component: LinkComponent,
 };
 
 export const Text = () => ({
-  component: Button,
+  component: LinkComponent,
   props: {
     text: 'Hello Button',
   },
 });
 
 export const Emoji = () => ({
-  component: Button,
+  component: LinkComponent,
   props: {
     text: '😀 😎 👍 💯',
   },
@@ -27,7 +26,7 @@ Emoji.story = {
 };
 
 export const WithSomeEmojiAndAction = () => ({
-  component: Button,
+  component: LinkComponent,
   props: {
     text: '😀 😎 👍 💯',
     onClick: action('This was clicked OMG'),
@@ -40,7 +39,7 @@ WithSomeEmojiAndAction.story = {
 };
 
 export const ButtonWithLinkToAnotherStory = () => ({
-  component: Button,
+  component: LinkComponent,
   props: {
     text: 'Go to Welcome Story',
     onClick: linkTo('Welcome'),
