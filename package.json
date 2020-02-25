@@ -3,13 +3,19 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "start-storybook -p 6006",
-    "build": "ng build devtools-ui",
-    "build:storybook": "build-storybook -c .storybook -o dist/storybook",
-    "test": "ng test devtools-ui",
+    "start": "npm run package && npm run storybook:start",
+    "package": "npm run build && npm run pack",
+    "test": "npm run devtools-ui:test",
+    "build": "npm run devtools-ui:build",
+    "pack": "npm run devtools-ui:pack",
     "test:ci": "npm test -- --sourceMap=false --browsers=ChromeHeadless --watch=false",
-    "lint": "ng lint devtools-ui",
-    "e2e": "ng e2e devtools-ui"
+    "devtools-ui:build": "ng build devtools-ui",
+    "devtools-ui:pack": "cd dist/devtools-ui && npm pack",
+    "devtools-ui:install": "cd dist/devtools-ui",
+    "devtools-ui:lint": "ng lint devtools-ui",
+    "devtools-ui:test": "ng test devtools-ui",
+    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "build-storybook -c .storybook -o dist/storybook"
   },
   "private": true,
   "dependencies": {
