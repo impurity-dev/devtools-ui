@@ -17,7 +17,7 @@ install:
   - npm install -g yarn
 
 script:
-  - yarn storybook:build
+  - yarn build:storybook
 
 deploy:
   provider: pages
