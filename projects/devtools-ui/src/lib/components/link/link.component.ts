@@ -1,3 +1,4 @@
+import { Link } from './../../models/link.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./link.component.scss']
 })
 export class LinkComponent {
-  @Input() url: string;
+  @Input() link: Link;
 }

@@ -1,4 +1,6 @@
-export * from './lib/component/component.module';
-export * from './lib/component/link/link.component';
+export * from './lib/components/components.module';
+export * from './lib/components/link/link.component';
 
-export * from './lib/page/page.module';
+export * from './lib/models/models.module';
+
+export * from './lib/pages/pages.module';

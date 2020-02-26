@@ -50,6 +50,9 @@
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
+    },
+    "@schematics/angular:class": {
+      "type": "model"
     }
   }
 }

@@ -11,4 +11,4 @@ import { LinkComponent } from './link/link.component';
     LinkComponent
   ]
 })
-export class ComponentModule { }
+export class ComponentsModule { }
