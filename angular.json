@@ -46,5 +46,10 @@
   "cli": {
     "analytics": "00cbf1f7-a2e2-4a83-971c-95b15f45f40f"
   },
-  "defaultProject": "devtools-ui"
+  "defaultProject": "devtools-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  }
 }
