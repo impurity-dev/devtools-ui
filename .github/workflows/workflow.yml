@@ -16,11 +16,8 @@ jobs:
             - name: Lint
               run: npm run lint
 
-            - name: Build Library
+            - name: Build Library and Storybook
               run: npm run build
-
-            - name: Build Storybook
-              run: npm run build-storybook
 
             - name: Test
               run: npm run test:ci

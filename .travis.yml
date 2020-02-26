@@ -17,12 +17,12 @@ install:
   - npm install -g yarn
 
 script:
-  - yarn build-storybook
+  - yarn storybook:build
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: dist-storybook
+  local_dir: dist/storybook
   on:
     branch: master
