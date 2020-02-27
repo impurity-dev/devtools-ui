@@ -4,9 +4,8 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "test:ci": "npm test -- --sourceMap=false --browsers=ChromeHeadless --watch=false",
-    "build": "npm run build:devtools-ui && npm run build:storybook",
-    "pack": "cd dist/devtools-ui && npm pack",
-    "build:devtools-ui": "ng build @impurity/devtools-ui",
+    "build": "npm run build:ui && npm run build:storybook",
+    "build:ui": "ng build @impurity/devtools-ui",
     "build:storybook": "build-storybook -c .storybook -o dist/storybook"
   },
   "private": true,
