@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "devtools-ui": {
+    "@impurity/devtools-ui": {
       "projectType": "library",
-      "root": "projects/devtools-ui",
-      "sourceRoot": "projects/devtools-ui/src",
-      "prefix": "devtools",
+      "root": "projects/impurity/devtools-ui",
+      "sourceRoot": "projects/impurity/devtools-ui/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/devtools-ui/tsconfig.lib.json",
-            "project": "projects/devtools-ui/ng-package.json"
+            "tsConfig": "projects/impurity/devtools-ui/tsconfig.lib.json",
+            "project": "projects/impurity/devtools-ui/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/devtools-ui/tsconfig.lib.prod.json"
+              "tsConfig": "projects/impurity/devtools-ui/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/devtools-ui/src/test.ts",
-            "tsConfig": "projects/devtools-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/devtools-ui/karma.conf.js"
+            "main": "projects/impurity/devtools-ui/src/test.ts",
+            "tsConfig": "projects/impurity/devtools-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/impurity/devtools-ui/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/devtools-ui/tsconfig.lib.json",
-              "projects/devtools-ui/tsconfig.spec.json"
+              "projects/impurity/devtools-ui/tsconfig.lib.json",
+              "projects/impurity/devtools-ui/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -42,9 +42,18 @@
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
     "analytics": "00cbf1f7-a2e2-4a83-971c-95b15f45f40f"
   },
-  "defaultProject": "devtools-ui"
+  "defaultProject": "@impurity/devtools-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    },
+    "@schematics/angular:class": {
+      "type": "model"
+    }
+  }
 }

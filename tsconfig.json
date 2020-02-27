@@ -22,6 +22,10 @@
       "devtools-ui": [
         "dist/devtools-ui/devtools-ui",
         "dist/devtools-ui"
+      ],
+      "@impurity/devtools-ui": [
+        "dist/impurity/devtools-ui/impurity-devtools-ui",
+        "dist/impurity/devtools-ui"
       ]
     }
   },
