@@ -1,4 +1,3 @@
-import { ModelModule } from './model/model.module';
 import { ServiceModule } from './service/service.module';
 import { PageModule } from './page/page.module';
 import { ComponentModule } from './component/component.module';
@@ -8,10 +7,10 @@ import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [ComponentModule, ModelModule, PageModule, ServiceModule],
+  declarations: [],
   imports: [
     CommonModule
   ],
-  exports: [ComponentModule, ModelModule, PageModule, ServiceModule]
+  exports: [ComponentModule, PageModule, ServiceModule]
 })
 export class LinkUiModule { }

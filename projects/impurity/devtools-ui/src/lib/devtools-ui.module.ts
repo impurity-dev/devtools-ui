@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 
 @NgModule({
-  declarations: [LinkUiModule],
+  declarations: [],
   imports: [
   ],
   exports: [LinkUiModule]

@@ -1,7 +1,10 @@
+import { LinkComponent } from './../lib/link-ui/component/link/link.component';
 import { storiesOf } from '@storybook/angular';
-import { DevtoolsUiComponent } from '../lib/devtools-ui.component';
 
 storiesOf('Link', module)
   .add('Test', () => ({
-    component: DevtoolsUiComponent,
+    component: LinkComponent,
+    props: {
+      link: { url: "www.google.com", label: "Test Label" }
+    }
   }));
