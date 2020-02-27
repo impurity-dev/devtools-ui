@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title '@impurity/devtools-ui-storybook'`, () => {
+  it(`should have as title 'devtools-ui-storybook'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('@impurity/devtools-ui-storybook');
+    expect(app.title).toEqual('devtools-ui-storybook');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('@impurity/devtools-ui-storybook app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('devtools-ui-storybook app is running!');
   });
 });

@@ -3,12 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "test": "ng test devtools-ui",
     "test:ci": "npm test -- --sourceMap=false --browsers=ChromeHeadless --watch=false",
-    "lint": "ng lint devtools-ui",
     "build": "npm run build:devtools-ui && npm run build:storybook",
     "pack": "cd dist/devtools-ui && npm pack",
-    "build:devtools-ui": "ng build devtools-ui",
+    "build:devtools-ui": "ng build @impurity/devtools-ui",
     "build:storybook": "build-storybook -c .storybook -o dist/storybook"
   },
   "private": true,
@@ -21,6 +19,7 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
+    "@impurity/devtools-ui": "file:dist/impurity/devtools-ui",
     "@storybook/addon-actions": "^5.3.14",
     "@storybook/addon-links": "^5.3.14",
     "@storybook/addon-notes": "^5.3.14",

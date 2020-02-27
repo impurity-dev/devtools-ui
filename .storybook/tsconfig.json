@@ -1,5 +1,5 @@
 {
-  "extends": "../projects/devtools-ui/tsconfig.lib.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "types": [
       "node"
