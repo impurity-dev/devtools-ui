@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "devtools-ui": {
+    "@impurity/devtools-ui": {
       "projectType": "library",
-      "root": "projects/devtools-ui",
-      "sourceRoot": "projects/devtools-ui/src",
-      "prefix": "devtools",
+      "root": "projects/impurity/devtools-ui",
+      "sourceRoot": "projects/impurity/devtools-ui/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/devtools-ui/tsconfig.lib.json",
-            "project": "projects/devtools-ui/ng-package.json"
+            "tsConfig": "projects/impurity/devtools-ui/tsconfig.lib.json",
+            "project": "projects/impurity/devtools-ui/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/devtools-ui/tsconfig.lib.prod.json"
+              "tsConfig": "projects/impurity/devtools-ui/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/devtools-ui/src/test.ts",
-            "tsConfig": "projects/devtools-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/devtools-ui/karma.conf.js"
+            "main": "projects/impurity/devtools-ui/src/test.ts",
+            "tsConfig": "projects/impurity/devtools-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/impurity/devtools-ui/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/devtools-ui/tsconfig.lib.json",
-              "projects/devtools-ui/tsconfig.spec.json"
+              "projects/impurity/devtools-ui/tsconfig.lib.json",
+              "projects/impurity/devtools-ui/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -42,11 +42,133 @@
           }
         }
       }
-    }},
+    },
+    "@impurity/devtools-ui-storybook": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/@impurity/devtools-ui-storybook",
+      "sourceRoot": "projects/@impurity/devtools-ui-storybook/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/@impurity/devtools-ui-storybook",
+            "index": "projects/@impurity/devtools-ui-storybook/src/index.html",
+            "main": "projects/@impurity/devtools-ui-storybook/src/main.ts",
+            "polyfills": "projects/@impurity/devtools-ui-storybook/src/polyfills.ts",
+            "tsConfig": "projects/@impurity/devtools-ui-storybook/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/@impurity/devtools-ui-storybook/src/favicon.ico",
+              "projects/@impurity/devtools-ui-storybook/src/assets"
+            ],
+            "styles": [
+              "projects/@impurity/devtools-ui-storybook/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@impurity/devtools-ui-storybook/src/environments/environment.ts",
+                  "with": "projects/@impurity/devtools-ui-storybook/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "@impurity/devtools-ui-storybook:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "@impurity/devtools-ui-storybook:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "@impurity/devtools-ui-storybook:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/@impurity/devtools-ui-storybook/src/test.ts",
+            "polyfills": "projects/@impurity/devtools-ui-storybook/src/polyfills.ts",
+            "tsConfig": "projects/@impurity/devtools-ui-storybook/tsconfig.spec.json",
+            "karmaConfig": "projects/@impurity/devtools-ui-storybook/karma.conf.js",
+            "assets": [
+              "projects/@impurity/devtools-ui-storybook/src/favicon.ico",
+              "projects/@impurity/devtools-ui-storybook/src/assets"
+            ],
+            "styles": [
+              "projects/@impurity/devtools-ui-storybook/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+                "projects/@impurity/devtools-ui-storybook/tsconfig.app.json",
+                "projects/@impurity/devtools-ui-storybook/tsconfig.spec.json",
+                "projects/@impurity/devtools-ui-storybook/e2e/tsconfig.json"
+              ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+          "e2e": {
+            "builder": "@angular-devkit/build-angular:protractor",
+            "options": {
+              "protractorConfig": "projects/@impurity/devtools-ui-storybook/e2e/protractor.conf.js",
+              "devServerTarget": "@impurity/devtools-ui-storybook:serve"
+            },
+            "configurations": {
+              "production": {
+                "devServerTarget": "@impurity/devtools-ui-storybook:serve:production"
+              }
+            }
+          }
+      }
+    }
+  },
   "cli": {
     "analytics": "00cbf1f7-a2e2-4a83-971c-95b15f45f40f"
   },
-  "defaultProject": "devtools-ui",
+  "defaultProject": "@impurity/devtools-ui",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
