@@ -1,12 +1,12 @@
+import { LinkUiModule } from './link-ui/link-ui.module';
 import { NgModule } from '@angular/core';
-import { DevtoolsUiComponent } from './devtools-ui.component';
 
 
 
 @NgModule({
-  declarations: [DevtoolsUiComponent],
+  declarations: [LinkUiModule],
   imports: [
   ],
-  exports: [DevtoolsUiComponent]
+  exports: [LinkUiModule]
 })
 export class DevtoolsUiModule { }
