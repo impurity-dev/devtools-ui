@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LinkPageComponent } from './link-page/link-page.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LinkPageComponent],
   imports: [
     CommonModule
   ]

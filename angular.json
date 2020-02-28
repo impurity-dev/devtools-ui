@@ -54,6 +54,9 @@
     },
     "@schematics/angular:class": {
       "type": "model"
+    },
+    "@schematics/angular:interface": {
+      "type": "model"
     }
   }
 }
