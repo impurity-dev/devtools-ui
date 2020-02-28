@@ -7,7 +7,7 @@
             "projectType": "library",
             "root": "projects/impurity/devtools-ui",
             "sourceRoot": "projects/impurity/devtools-ui/src",
-            "prefix": "lib",
+            "prefix": "devtools",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-ng-packagr:build",

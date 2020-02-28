@@ -2,7 +2,7 @@ import { Link } from './../../model/link.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'lib-link-page',
+    selector: 'devtools-link-page',
     templateUrl: './link-page.component.html',
     styleUrls: ['./link-page.component.scss'],
 })
