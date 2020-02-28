@@ -1,0 +1,7 @@
+<button class="btn card" onclick="onClick()" style="max-width: 15rem;">
+    <img src="{{ link.icon.image }}" class="mx-auto" alt="{{ link.icon.alt }}" />
+    <div class="card-body">
+        <h5 class="card-title">{{ link.label }}</h5>
+        <p *ngIf="link.description" class="card-text">{{ link.description }}</p>
+    </div>
+</button>
