@@ -8,10 +8,6 @@ export * from './lib/devtools-ui.module';
 /* Link Ui */
 export * from './lib/link-ui/link-ui.module';
 /* Components */
-export * from './lib/link-ui/component/component.module';
-export * from './lib/link-ui/component/link/link.component';
-/* Pages */
-export * from './lib/link-ui/page/page.module';
-export * from './lib/link-ui/page/link-page/link-page.component';
-/* Services */
-export * from './lib/link-ui/service/service.module';
+export * from './lib/link-ui/components/components.module';
+export * from './lib/link-ui/components/link/link.component';
+export * from './lib/link-ui/components/link-page/link-page.component';

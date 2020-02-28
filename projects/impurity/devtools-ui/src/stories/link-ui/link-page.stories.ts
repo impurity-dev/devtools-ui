@@ -1,8 +1,20 @@
-import { linkWithDescription } from './../../mock/link.mock';
-import { LinkPageComponent } from './../../lib/link-ui/page/link-page/link-page.component';
-import { storiesOf } from '@storybook/angular';
+import { LinkUiModule } from './../../lib/link-ui/link-ui.module';
+import { CommonModule } from '@angular/common';
+import { linkWithDescription, linkWithoutDescription } from './../../mock/link.mock';
+import { LinkPageComponent } from './../../lib/link-ui/components/link-page/link-page.component';
+import { moduleMetadata } from '@storybook/angular';
 
-storiesOf('Link Page', module).add('Link with description', () => ({
+export default {
+    title: 'Link Page',
+    decorators: [
+        moduleMetadata({
+            declarations: [],
+            imports: [CommonModule, LinkUiModule],
+        }),
+    ],
+};
+
+export const WithDescriptions = () => ({
     component: LinkPageComponent,
     props: {
         links: [
@@ -12,13 +24,20 @@ storiesOf('Link Page', module).add('Link with description', () => ({
             linkWithDescription,
             linkWithDescription,
             linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
         ],
     },
-}));
+});
+
+export const WithoutDescriptions = () => ({
+    component: LinkPageComponent,
+    props: {
+        links: [
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+        ],
+    },
+});

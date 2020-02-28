@@ -1,4 +1,5 @@
 import { Icon } from './icon.model';
+
 export interface Link {
     description?: string;
     label: string;
