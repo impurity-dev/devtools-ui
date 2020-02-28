@@ -4,13 +4,9 @@ import { ComponentModule } from './component/component.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
-
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports: [ComponentModule, PageModule, ServiceModule]
+    declarations: [],
+    imports: [CommonModule],
+    exports: [ComponentModule, PageModule, ServiceModule],
 })
-export class LinkUiModule { }
+export class LinkUiModule {}
