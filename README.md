@@ -1,1 +1,1 @@
-TODO
+* (Set up global styles)[https://medium.com/storybookjs/declarative-storybook-configuration-49912f77b78]
