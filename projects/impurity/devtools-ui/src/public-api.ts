@@ -5,6 +5,9 @@
 /* Library */
 export * from './lib/devtools-ui.module';
 
+/* Ui */
+export * from './lib/ui/ui.component';
+
 /* Link Ui */
 export * from './lib/link-ui/link-ui.module';
 /* Components */

@@ -1,5 +1,5 @@
+import { Link } from './../../../impurity/devtools-ui/src/lib/models/link.model';
 import { icon75x75 } from './icon.mock';
-import { Link } from '../../../impurity/devtools-ui/src/lib/link-ui/models/link.model';
 
 export const linkWithoutDescription: Link = {
     url: 'www.google.com',

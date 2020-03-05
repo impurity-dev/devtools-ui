@@ -1,5 +1,7 @@
-<div class="dark-theme">
-    <div class="d-flex flex-row w-100 h-100 mat-app-background">
-        <devtools-link *ngFor="let link of links" [link]="link"></devtools-link>
-    </div>
+<div *ngIf="config; else empty" class="d-flex flex-row w-100 h-100">
+    <devtools-link *ngFor="let link of config.links" [link]="link"></devtools-link>
 </div>
+
+<ng-template #empty>
+    <span>No links provided to link ui</span>
+</ng-template>

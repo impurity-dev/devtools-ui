@@ -51,7 +51,8 @@
             "type": "model"
         },
         "@schematics/angular:interface": {
-            "type": "model"
+            "type": "model",
+            "spec": "false"
         }
     }
 }
