@@ -1,0 +1,7 @@
+<div *ngIf="links; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
+    <devtools-link *ngFor="let link of links" [link]="link" class="p-3"></devtools-link>
+</div>
+
+<ng-template #empty>
+    <span>No links provided to link page</span>
+</ng-template>
