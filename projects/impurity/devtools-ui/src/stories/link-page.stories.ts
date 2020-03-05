@@ -16,27 +16,31 @@ export default {
 export const WithDescriptions = () => ({
     component: LinkPageComponent,
     props: {
-        links: [
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-            linkWithDescription,
-        ],
+        config: {
+            links: [
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+            ],
+        },
     },
 });
 
 export const WithoutDescriptions = () => ({
     component: LinkPageComponent,
     props: {
-        links: [
-            linkWithoutDescription,
-            linkWithoutDescription,
-            linkWithoutDescription,
-            linkWithoutDescription,
-            linkWithoutDescription,
-            linkWithoutDescription,
-        ],
+        config: {
+            links: [
+                linkWithoutDescription,
+                linkWithoutDescription,
+                linkWithoutDescription,
+                linkWithoutDescription,
+                linkWithoutDescription,
+                linkWithoutDescription,
+            ],
+        },
     },
 });

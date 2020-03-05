@@ -1,9 +1,11 @@
 <mat-card>
     <mat-card-title>
-        Title
+        {{ link.label }}
     </mat-card-title>
-    <hr />
-    <mat-card-subtitle>
-        Subtitle
-    </mat-card-subtitle>
+    <div *ngIf="link.description">
+        <mat-divider></mat-divider>
+        <mat-card-subtitle>
+            {{ link.description }}
+        </mat-card-subtitle>
+    </div>
 </mat-card>
