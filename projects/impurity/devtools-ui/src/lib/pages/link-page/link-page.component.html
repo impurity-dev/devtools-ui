@@ -1,7 +1,5 @@
-<div *ngIf="config; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
-    <devtools-link *ngFor="let link of config.links" [link]="link" class="p-3"></devtools-link>
-</div>
+<devtools-link-list *ngIf="config; else error" [links]="config.links"></devtools-link-list>
 
-<ng-template #empty>
-    <span>No links provided to link page</span>
+<ng-template #error>
+    <span>No config provided</span>
 </ng-template>
