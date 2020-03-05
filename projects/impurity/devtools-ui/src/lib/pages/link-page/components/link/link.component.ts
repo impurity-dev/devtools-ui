@@ -1,4 +1,4 @@
-import { Link } from '../../../models/link.model';
+import { Link } from '../../models/link.model';
 import { Component, Input } from '@angular/core';
 
 @Component({

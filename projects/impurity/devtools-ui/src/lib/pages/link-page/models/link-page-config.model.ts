@@ -1,4 +1,4 @@
 import { Link } from './link.model';
-export interface LinkUiConfig {
+export interface LinkPageConfig {
     links: Link[];
 }

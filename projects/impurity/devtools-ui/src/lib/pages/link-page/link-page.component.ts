@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LinkUiConfig } from '../../../models/link-ui-config.model';
+import { LinkPageConfig } from './models/link-page-config.model';
 
 @Component({
     selector: 'devtools-link-page',
@@ -7,5 +7,5 @@ import { LinkUiConfig } from '../../../models/link-ui-config.model';
     styleUrls: ['./link-page.component.scss'],
 })
 export class LinkPageComponent {
-    @Input() config: LinkUiConfig;
+    @Input() config: LinkPageConfig;
 }
