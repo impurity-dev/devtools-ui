@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
-import { LinkComponent } from './../../lib/link-ui/components/link/link.component';
-import { LinkUiModule } from './../../lib/link-ui/link-ui.module';
-import { linkWithDescription, linkWithoutDescription } from './../../mock/link.mock';
+import { LinkComponent } from '../../../impurity/devtools-ui/src/lib/link-ui/components/link/link.component';
+import { LinkUiModule } from '../../../impurity/devtools-ui/src/lib/link-ui/link-ui.module';
+import { linkWithDescription, linkWithoutDescription } from '../mock/link.mock';
 
 export default {
     title: 'Link',

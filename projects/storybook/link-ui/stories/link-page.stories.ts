@@ -1,7 +1,7 @@
-import { LinkUiModule } from './../../lib/link-ui/link-ui.module';
+import { LinkUiModule } from '../../../impurity/devtools-ui/src/lib/link-ui/link-ui.module';
 import { CommonModule } from '@angular/common';
-import { linkWithDescription, linkWithoutDescription } from './../../mock/link.mock';
-import { LinkPageComponent } from './../../lib/link-ui/components/link-page/link-page.component';
+import { linkWithDescription, linkWithoutDescription } from '../mock/link.mock';
+import { LinkPageComponent } from '../../../impurity/devtools-ui/src/lib/link-ui/components/link-page/link-page.component';
 import { moduleMetadata } from '@storybook/angular';
 
 export default {
