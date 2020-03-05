@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
 import { LinkPageConfig } from './models/link-page-config.model';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'devtools-link-page',
