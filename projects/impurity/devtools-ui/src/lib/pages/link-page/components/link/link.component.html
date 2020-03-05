@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title>
+        {{ link.label }}
+    </mat-card-title>
+    <div *ngIf="link.description">
+        <mat-divider></mat-divider>
+        <mat-card-subtitle>
+            {{ link.description }}
+        </mat-card-subtitle>
+    </div>
+</mat-card>

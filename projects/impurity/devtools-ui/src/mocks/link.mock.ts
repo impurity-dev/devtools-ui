@@ -1,5 +1,5 @@
+import { Link } from './../lib/pages/link-page/models/link.model';
 import { icon75x75 } from './icon.mock';
-import { Link } from './../lib/link-ui/models/link.model';
 
 export const linkWithoutDescription: Link = {
     url: 'www.google.com',

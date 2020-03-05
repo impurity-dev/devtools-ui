@@ -1,15 +1,14 @@
+import { LinkComponent } from './../lib/pages/link-page/components/link/link.component';
+import { LinkPageModule } from './../lib/pages/link-page/link-page.module';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
-import { LinkComponent } from './../../lib/link-ui/components/link/link.component';
-import { LinkUiModule } from './../../lib/link-ui/link-ui.module';
-import { linkWithDescription, linkWithoutDescription } from './../../mock/link.mock';
+import { linkWithDescription, linkWithoutDescription } from '../mocks/link.mock';
 
 export default {
     title: 'Link',
     decorators: [
         moduleMetadata({
-            declarations: [],
-            imports: [CommonModule, LinkUiModule],
+            imports: [CommonModule, LinkPageModule],
         }),
     ],
 };

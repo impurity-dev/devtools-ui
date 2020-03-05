@@ -5,9 +5,14 @@
 /* Library */
 export * from './lib/devtools-ui.module';
 
-/* Link Ui */
-export * from './lib/link-ui/link-ui.module';
+/* Apps */
+export * from './lib/apps/apps.module';
+/* Ui */
+export * from './lib/apps/ui/ui.component';
+
+/* Link Page */
+export * from './lib/pages/link-page/link-page.module';
+export * from './lib/pages/link-page/link-page.component';
 /* Components */
-export * from './lib/link-ui/components/components.module';
-export * from './lib/link-ui/components/link/link.component';
-export * from './lib/link-ui/components/link-page/link-page.component';
+export * from './lib/pages/link-page/components/components.module';
+export * from './lib/pages/link-page/components/link/link.component';

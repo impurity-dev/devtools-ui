@@ -1,7 +1,8 @@
+import { AppsModule } from './apps/apps.module';
 import { NgModule } from '@angular/core';
-import { LinkUiModule } from './link-ui/link-ui.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    imports: [LinkUiModule],
+    imports: [BrowserAnimationsModule, AppsModule],
 })
 export class DevtoolsUiModule {}

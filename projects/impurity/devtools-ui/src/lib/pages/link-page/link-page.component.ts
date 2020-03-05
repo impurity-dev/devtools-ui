@@ -1,5 +1,5 @@
-import { Link } from './../../models/link.model';
 import { Component, Input } from '@angular/core';
+import { LinkPageConfig } from './models/link-page-config.model';
 
 @Component({
     selector: 'devtools-link-page',
@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./link-page.component.scss'],
 })
 export class LinkPageComponent {
-    @Input() links: Link[] = [];
+    @Input() config: LinkPageConfig;
 }
