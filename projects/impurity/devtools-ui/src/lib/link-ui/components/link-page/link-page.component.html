@@ -1,5 +1,5 @@
-<div *ngIf="config; else empty" class="d-flex flex-row w-100 h-100">
-    <devtools-link *ngFor="let link of config.links" [link]="link"></devtools-link>
+<div *ngIf="config; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
+    <devtools-link *ngFor="let link of config.links" [link]="link" class="px-3"></devtools-link>
 </div>
 
 <ng-template #empty>
