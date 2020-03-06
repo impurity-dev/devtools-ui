@@ -10,7 +10,7 @@
         "lint:fix": "npm run lint -- --fix",
         "build": "npm run build:devtools-ui && npm run build:styles && npm run build:storybook",
         "build:devtools-ui": "ng build @impurity/devtools-ui",
-        "build:storybook": "build-storybook -c .storybook -o dist/storybook",
+        "build:storybook": "build-storybook -c .storybook -o dist/storybook -s dist/impurity/devtools-ui/css",
         "build:styles": "npm run build:styles:scss && npm run build:styles:css",
         "build:styles:scss": "sass projects/impurity/devtools-ui/src/scss/styles.scss dist/impurity/devtools-ui/scss/styles.scss --load-path=node_modules",
         "build:styles:css": "sass projects/impurity/devtools-ui/src/scss/styles.scss dist/impurity/devtools-ui/css/styles.css --load-path=node_modules"
