@@ -1,0 +1,8 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <devtools-side-nav></devtools-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content class="d-flex w-100">
+        <devtools-link-page *ngIf="linkPageConfig" [config]="linkPageConfig"></devtools-link-page>
+    </mat-sidenav-content>
+</mat-sidenav-container>
