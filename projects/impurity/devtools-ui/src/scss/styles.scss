@@ -8,12 +8,9 @@ body {
     height: 100%;
 }
 
-.main-wrapper {
-    height: 100vh;
-}
-
 @include mat-core();
 
+// Default theme
 $primary: mat-palette($mat-indigo);
 $accent: mat-palette($mat-pink, A200, A100, A400);
 $warn: mat-palette($mat-red);
@@ -21,7 +18,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
 
-// Our dark theme
+// Dark theme
 .dark-theme {
     color: $light-primary-text;
     $dark-primary: mat-palette($mat-yellow);
