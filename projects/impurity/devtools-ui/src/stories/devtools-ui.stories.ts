@@ -30,3 +30,46 @@ export const ConfigurablePage = () => ({
         },
     },
 });
+
+export const FewLinks = () => ({
+    component: DevtoolsUiComponent,
+    props: {
+        linkPageConfig: {
+            links: [linkWithDescription, linkWithDescription],
+        },
+    },
+});
+
+export const ManyLink = () => ({
+    component: DevtoolsUiComponent,
+    props: {
+        linkPageConfig: {
+            links: [
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+                linkWithDescription,
+            ],
+        },
+    },
+});
