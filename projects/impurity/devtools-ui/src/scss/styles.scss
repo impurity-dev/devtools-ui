@@ -18,6 +18,20 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
 
+.light-theme {
+    color: $dark-primary-text;
+    $light-primary: mat-palette($mat-yellow);
+    $light-accent: mat-palette($mat-amber, A400, A100, A700);
+    $light-warn: mat-palette($mat-red);
+    $light-theme: mat-dark-theme($light-primary, $light-accent, $light-warn);
+
+    @include angular-material-theme($light-theme);
+
+    body {
+        background: map-get($mat-light-theme-background, background);
+    }
+}
+
 // Dark theme
 .dark-theme {
     color: $light-primary-text;
@@ -27,4 +41,8 @@ $theme: mat-light-theme($primary, $accent, $warn);
     $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
     @include angular-material-theme($dark-theme);
+
+    body {
+        background: map-get($mat-dark-theme-background, background);
+    }
 }
