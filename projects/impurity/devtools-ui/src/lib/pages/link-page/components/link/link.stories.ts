@@ -1,10 +1,8 @@
-import { customizableLink } from './../mocks/link.mock';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
-import { text } from '@storybook/addon-knobs';
-import { linkWithDescription, linkWithoutDescription } from '../mocks/link.mock';
-import { LinkComponent } from './../lib/pages/link-page/components/link/link.component';
-import { LinkPageModule } from './../lib/pages/link-page/link-page.module';
+import { customizableLink, linkWithDescription, linkWithoutDescription } from '../../../../../mocks/link.mock';
+import { LinkPageModule } from '../../link-page.module';
+import { LinkComponent } from './link.component';
 
 export default {
     title: 'Link',

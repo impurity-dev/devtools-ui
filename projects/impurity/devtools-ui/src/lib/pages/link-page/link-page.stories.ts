@@ -1,8 +1,8 @@
-import { LinkPageComponent } from './../lib/pages/link-page/link-page.component';
-import { LinkPageModule } from '../lib/pages/link-page/link-page.module';
 import { CommonModule } from '@angular/common';
-import { linkWithDescription, linkWithoutDescription } from '../mocks/link.mock';
 import { moduleMetadata } from '@storybook/angular';
+import { linkWithDescription, linkWithoutDescription } from '../../../mocks/link.mock';
+import { LinkPageComponent } from './link-page.component';
+import { LinkPageModule } from './link-page.module';
 
 export default {
     title: 'Link Page',

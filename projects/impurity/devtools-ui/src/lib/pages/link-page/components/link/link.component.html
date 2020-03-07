@@ -3,7 +3,9 @@
         <div class="pb-3">
             <img class="image-container" src="{{ link.icon.image }}" alt="{{ link.icon.alt }}" />
         </div>
-        <h5>{{ link.label }}</h5>
+        <a href="{{ link.url }}">
+            <h5>{{ link.label }}</h5>
+        </a>
     </mat-card-title>
     <mat-card-subtitle *ngIf="link.description" class="mt-2 d-flex flex-column">
         <mat-divider></mat-divider>
