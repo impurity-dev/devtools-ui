@@ -1,8 +1,11 @@
+import { customizableLink } from './../mocks/link.mock';
+import { LinkListComponent } from './../lib/pages/link-page/components/link-list/link-list.component';
 import { LinkComponent } from './../lib/pages/link-page/components/link/link.component';
 import { LinkPageModule } from './../lib/pages/link-page/link-page.module';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { linkWithDescription, linkWithoutDescription } from '../mocks/link.mock';
+import { object } from '@storybook/addon-knobs';
 
 export default {
     title: 'Link list',
@@ -13,16 +16,68 @@ export default {
     ],
 };
 
-export const WithDescription = () => ({
-    component: LinkComponent,
+export const ConfigurableLinkList = () => ({
+    component: LinkListComponent,
     props: {
-        link: linkWithDescription,
+        links: object('Link list', [
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+            customizableLink,
+        ]),
+    },
+});
+
+export const WithDescription = () => ({
+    component: LinkListComponent,
+    props: {
+        links: [
+            linkWithDescription,
+            linkWithDescription,
+            linkWithDescription,
+            linkWithDescription,
+            linkWithDescription,
+            linkWithDescription,
+        ],
     },
 });
 
 export const WithoutDescription = () => ({
-    component: LinkComponent,
+    component: LinkListComponent,
     props: {
-        link: linkWithoutDescription,
+        links: [
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+            linkWithoutDescription,
+        ],
     },
 });

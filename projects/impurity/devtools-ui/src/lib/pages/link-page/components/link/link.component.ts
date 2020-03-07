@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class LinkComponent {
     @Input() link: Link;
+    isDescriptionOpen = false;
 
     onClick(): void {
         window.location.href = this.link.url;

@@ -1,6 +1,7 @@
 import { DevtoolsUiComponent } from './../lib/devtools-ui.component';
 import { DevtoolsUiModule } from './../lib/devtools-ui.module';
 import { linkWithDescription } from './../mocks/link.mock';
+import { customizableLink } from './../mocks/link.mock';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -18,14 +19,14 @@ export const ConfigurablePage = () => ({
     props: {
         linkPageConfig: {
             links: [
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
+                customizableLink,
+                customizableLink,
+                customizableLink,
+                customizableLink,
+                customizableLink,
+                customizableLink,
+                customizableLink,
+                customizableLink,
             ],
         },
     },
