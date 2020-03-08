@@ -1,6 +1,6 @@
 import Link from './../src/lib/shared/models/link';
 import Image from './../src/lib/shared/models/image';
-import { text } from '@storybook/addon-knobs';
+import { text, boolean } from '@storybook/addon-knobs';
 
 export const customizableLinkCard = {
     image: {
@@ -10,6 +10,7 @@ export const customizableLinkCard = {
     link: {
         href: text('Link href', 'www.google.com'),
         label: text('Link alt', 'Google link'),
+        isInternal: boolean('Internal', false),
     } as Link,
     description: text('Optional description', 'Repositories'),
 };
