@@ -8,5 +8,4 @@ import Image from '../../models/image';
 })
 export class ImageComponent {
     @Input() image: Image;
-    @Input() class: string;
 }
