@@ -1,5 +1,5 @@
-export default class Link {
+export default interface Link {
     href: string;
     label: string;
-    isExternal = false;
+    isInternal?: boolean;
 }

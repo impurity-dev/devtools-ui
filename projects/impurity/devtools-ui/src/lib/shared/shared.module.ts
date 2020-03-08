@@ -6,7 +6,7 @@ import { LinkComponent } from './components/link/link.component';
 
 @NgModule({
     declarations: [ImageComponent, LinkComponent],
-    imports: [CommonModule, RouterModule.forRoot([])],
+    imports: [CommonModule, RouterModule.forRoot([], { useHash: true })],
     providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     exports: [ImageComponent, LinkComponent],
 })
