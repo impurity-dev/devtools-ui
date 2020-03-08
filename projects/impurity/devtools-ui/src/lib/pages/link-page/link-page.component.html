@@ -1,5 +1,2 @@
-<devtools-link-list *ngIf="config; else error" [links]="config.links"></devtools-link-list>
-
-<ng-template #error>
-    <span>No config provided</span>
-</ng-template>
+<div>TODO: {{ linkPage.title }}</div>
+<devtools-link-card-list [linkCards]="linkPage.linkCards"></devtools-link-card-list>

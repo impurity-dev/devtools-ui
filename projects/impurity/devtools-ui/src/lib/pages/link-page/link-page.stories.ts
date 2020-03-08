@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
+import { object, text } from '@storybook/addon-knobs';
 import { moduleMetadata } from '@storybook/angular';
-import { linkWithDescription, linkWithoutDescription } from '../../../mocks/link.mock';
+import { customizableLinkCard, linkCardWithDescription, linkCardWithoutDescription } from '../../../../mocks/link-card.mock';
 import { LinkPageComponent } from './link-page.component';
 import { LinkPageModule } from './link-page.module';
 
@@ -13,17 +14,35 @@ export default {
     ],
 };
 
+export const Customizable = () => ({
+    component: LinkPageComponent,
+    props: {
+        linkPage: {
+            title: text('Link page title', 'Developer Workspace'),
+            linkCards: object('Link list', [
+                customizableLinkCard,
+                customizableLinkCard,
+                customizableLinkCard,
+                customizableLinkCard,
+                customizableLinkCard,
+                customizableLinkCard,
+            ]),
+        },
+    },
+});
+
 export const WithDescriptions = () => ({
     component: LinkPageComponent,
     props: {
-        config: {
-            links: [
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
-                linkWithDescription,
+        linkPage: {
+            title: 'Sample page title',
+            linkCards: [
+                linkCardWithDescription,
+                linkCardWithDescription,
+                linkCardWithDescription,
+                linkCardWithDescription,
+                linkCardWithDescription,
+                linkCardWithDescription,
             ],
         },
     },
@@ -32,14 +51,15 @@ export const WithDescriptions = () => ({
 export const WithoutDescriptions = () => ({
     component: LinkPageComponent,
     props: {
-        config: {
-            links: [
-                linkWithoutDescription,
-                linkWithoutDescription,
-                linkWithoutDescription,
-                linkWithoutDescription,
-                linkWithoutDescription,
-                linkWithoutDescription,
+        linkPage: {
+            title: 'Sample page title',
+            linkCards: [
+                linkCardWithoutDescription,
+                linkCardWithoutDescription,
+                linkCardWithoutDescription,
+                linkCardWithoutDescription,
+                linkCardWithoutDescription,
+                linkCardWithoutDescription,
             ],
         },
     },

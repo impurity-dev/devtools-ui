@@ -1,11 +1,11 @@
-<<ng-container *ngIf="isExternal; else internal">
-    <a href="{{ href }}">
-        <span>{{ label }}</span>
+<ng-container *ngIf="link.isExternal; else internal">
+    <a href="{{ link.href }}">
+        <span>{{ link.label }}</span>
     </a>
 </ng-container>
 
 <ng-template #internal>
-    <a [routerLink]="{{ href }}">
-        <span>{{ label }}</span>
+    <a [routerLink]="link.href">
+        <span>{{ link.label }}</span>
     </a>
 </ng-template>

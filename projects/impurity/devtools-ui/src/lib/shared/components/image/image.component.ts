@@ -7,6 +7,6 @@ import Image from '../../models/image';
     styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent {
-    @Input() src: string;
-    @Input() alt: string;
+    @Input() image: Image;
+    @Input() class: string;
 }

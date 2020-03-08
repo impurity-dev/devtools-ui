@@ -8,6 +8,6 @@
         <devtools-side-nav></devtools-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>
-        <devtools-link-page *ngIf="linkPageConfig" [config]="linkPageConfig"></devtools-link-page>
+        <devtools-link-page *ngFor="let linkPage of linkPages" [linkPage]="linkPage"></devtools-link-page>
     </mat-sidenav-content>
 </mat-sidenav-container>

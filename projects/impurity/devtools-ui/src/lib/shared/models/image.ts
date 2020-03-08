@@ -1,4 +1,4 @@
 export default interface Image {
-    url: string;
+    src: string;
     alt: string;
 }

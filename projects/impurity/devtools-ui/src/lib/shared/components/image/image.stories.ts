@@ -16,7 +16,9 @@ export default {
 export const CustomizableImage = () => ({
     component: ImageComponent,
     props: {
-        href: text('Image Link', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),
-        alt: text('Image Alt', 'BitBucket Logo'),
+        image: {
+            src: text('Image Link', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),
+            alt: text('Image Alt', 'BitBucket Logo'),
+        },
     },
 });

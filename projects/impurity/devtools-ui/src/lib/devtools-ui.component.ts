@@ -1,4 +1,4 @@
-import { LinkPageConfig } from './pages/link-page/models/link-page-config.model';
+import { LinkPage } from './pages/link-page/models/link-page.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./devtools-ui.component.scss'],
 })
 export class DevtoolsUiComponent {
-    @Input() linkPageConfig: LinkPageConfig;
+    @Input() linkPages: LinkPage[];
 }

@@ -1,12 +1,13 @@
-import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ImageComponent } from './components/image/image.component';
 import { LinkComponent } from './components/link/link.component';
 
 @NgModule({
-    declarations: [SideNavComponent, ImageComponent, LinkComponent],
-    imports: [CommonModule],
-    exports: [SideNavComponent],
+    declarations: [ImageComponent, LinkComponent],
+    imports: [CommonModule, RouterModule.forRoot([])],
+    providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+    exports: [ImageComponent, LinkComponent],
 })
 export class SharedModule {}

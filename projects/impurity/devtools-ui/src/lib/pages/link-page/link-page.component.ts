@@ -1,4 +1,4 @@
-import { LinkPageConfig } from './models/link-page-config.model';
+import { LinkPage } from './models/link-page.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./link-page.component.scss'],
 })
 export class LinkPageComponent {
-    @Input() config: LinkPageConfig;
+    @Input() linkPage: LinkPage;
 }

@@ -1,8 +1,8 @@
-import { LinkComponent } from './link.component';
-import { text } from '@storybook/addon-knobs';
-import { SharedModule } from './../../shared.module';
 import { CommonModule } from '@angular/common';
+import { text } from '@storybook/addon-knobs';
 import { moduleMetadata } from '@storybook/angular';
+import { SharedModule } from './../../shared.module';
+import { LinkComponent } from './link.component';
 
 export default {
     title: 'Link',
@@ -16,7 +16,9 @@ export default {
 export const CustomizableLink = () => ({
     component: LinkComponent,
     props: {
-        href: text('Image Link', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),
-        alt: text('Image Alt', 'BitBucket Logo'),
+        link: {
+            href: text('Link url', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),
+            label: text('Label', 'BitBucket Logo'),
+        },
     },
 });
