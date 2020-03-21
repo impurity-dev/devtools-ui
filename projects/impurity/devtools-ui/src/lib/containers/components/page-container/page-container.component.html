@@ -1,1 +1,7 @@
-<p>page-container works!</p>
+<mat-toolbar color="accent" class="mat-elevation-z6">
+    <mat-toolbar-row>
+        <ng-content select="page-title"></ng-content>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<ng-content select="page-content"></ng-content>

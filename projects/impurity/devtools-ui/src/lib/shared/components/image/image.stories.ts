@@ -1,4 +1,4 @@
-import { text } from '@storybook/addon-knobs';
+import { mockCustomizableImage } from './../../../../../mocks/image.mock';
 import { ImageComponent } from './image.component';
 import { SharedModule } from './../../shared.module';
 import { CommonModule } from '@angular/common';
@@ -16,9 +16,6 @@ export default {
 export const CustomizableImage = () => ({
     component: ImageComponent,
     props: {
-        image: {
-            src: text('Image Link', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),
-            alt: text('Image Alt', 'BitBucket Logo'),
-        },
+        image: mockCustomizableImage,
     },
 });

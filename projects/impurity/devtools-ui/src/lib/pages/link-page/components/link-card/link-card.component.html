@@ -1,10 +1,24 @@
-<mat-card class="card-container">
+<mat-card class="card-container mat-elevation-z4">
     <mat-card-title class="d-flex flex-column align-items-center">
         <devtools-image class="image-container pb-3" [image]="linkCard.image"></devtools-image>
-        <devtools-link [link]="linkCard.link"></devtools-link>
+        <span>{{ linkCard.link.label }}</span>
     </mat-card-title>
     <mat-card-subtitle *ngIf="linkCard.description" class="mt-2 d-flex flex-column">
         <mat-divider></mat-divider>
         <span class="pt-3 text-center">{{ linkCard.description }}</span>
+    </mat-card-subtitle>
+    <mat-card-subtitle class="mt-2 d-flex flex-column">
+        <mat-divider></mat-divider>
+        <div class="d-flex flex-row mt-3 justify-content-center align-items-center">
+            <button mat-icon-button color="accent" aria-label="Go to link">
+                <mat-icon>launch</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" aria-label="Go to link">
+                <mat-icon>launch</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" aria-label="Go to link">
+                <mat-icon>launch</mat-icon>
+            </button>
+        </div>
     </mat-card-subtitle>
 </mat-card>

@@ -1,2 +1,8 @@
-<div>TODO: {{ linkPage.title }}</div>
-<devtools-link-card-list [linkCards]="linkPage.linkCards"></devtools-link-card-list>
+<devtools-page-container>
+    <page-title>
+        {{ linkPage.title }}
+    </page-title>
+    <page-content>
+        <devtools-link-card-list [linkCards]="linkPage.linkCards"></devtools-link-card-list>
+    </page-content>
+</devtools-page-container>

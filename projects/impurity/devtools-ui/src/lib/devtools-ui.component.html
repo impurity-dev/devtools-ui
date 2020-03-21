@@ -1,6 +1,7 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="primary" class="position-absolute z-2 mat-elevation-z8">
     <mat-toolbar-row>
-        <span>Devtools Ui</span>
+        <devtools-image id="icon-container" class="d-flex flex-column justify-content-center mr-2" [image]="icon"></devtools-image>
+        <span>{{ title }}</span>
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container id="container" fullscreen>

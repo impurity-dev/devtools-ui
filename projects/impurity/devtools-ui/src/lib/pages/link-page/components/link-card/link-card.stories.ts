@@ -1,6 +1,10 @@
+import {
+    mockCustomizableLinkCard,
+    mockLinkCardWithDescription,
+    mockLinkCardWithoutDescription,
+} from './../../../../../../mocks/link-card.mock';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
-import { customizableLinkCard, linkCardWithDescription, linkCardWithoutDescription } from '../../../../../../mocks/link-card.mock';
 import { LinkPageModule } from '../../link-page.module';
 import { LinkCardComponent } from './link-card.component';
 
@@ -16,20 +20,20 @@ export default {
 export const Configurable = () => ({
     component: LinkCardComponent,
     props: {
-        linkCard: customizableLinkCard,
+        linkCard: mockCustomizableLinkCard,
     },
 });
 
 export const WithDescription = () => ({
     component: LinkCardComponent,
     props: {
-        linkCard: linkCardWithDescription,
+        linkCard: mockLinkCardWithDescription,
     },
 });
 
 export const WithoutDescription = () => ({
     component: LinkCardComponent,
     props: {
-        linkCard: linkCardWithoutDescription,
+        linkCard: mockLinkCardWithoutDescription,
     },
 });

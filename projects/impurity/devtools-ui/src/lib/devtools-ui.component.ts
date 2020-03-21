@@ -1,5 +1,6 @@
 import { LinkPage } from './pages/link-page/models/link-page.model';
 import { Component, Input } from '@angular/core';
+import Image from './shared/models/image';
 
 @Component({
     selector: 'devtools-ui',
@@ -7,5 +8,7 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./devtools-ui.component.scss'],
 })
 export class DevtoolsUiComponent {
+    @Input() title: string;
+    @Input() icon: Image;
     @Input() linkPages: LinkPage[];
 }

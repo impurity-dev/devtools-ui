@@ -1,10 +1,11 @@
-import { LinkPage } from './pages/link-page/models/link-page.model';
-import { text } from '@storybook/addon-knobs';
 import { CommonModule } from '@angular/common';
+import { text } from '@storybook/addon-knobs';
 import { moduleMetadata } from '@storybook/angular';
+import { mockCustomizableImage } from './../../mocks/image.mock';
+import { mockCustomizableLinkCard, mockLinkCardWithDescription, mockLinkCardWithoutDescription } from './../../mocks/link-card.mock';
 import { DevtoolsUiComponent } from './../lib/devtools-ui.component';
 import { DevtoolsUiModule } from './../lib/devtools-ui.module';
-import { customizableLinkCard, linkCardWithDescription, linkCardWithoutDescription } from '../../mocks/link-card.mock';
+import { LinkPage } from './pages/link-page/models/link-page.model';
 
 export default {
     title: 'Devtools Ui',
@@ -18,18 +19,20 @@ export default {
 export const ConfigurablePage = () => ({
     component: DevtoolsUiComponent,
     props: {
+        title: text('App title', 'Personal Application'),
+        icon: mockCustomizableImage,
         linkPages: [
             {
                 title: text('Link Page title', 'Developer workspace'),
                 linkCards: [
-                    customizableLinkCard,
-                    customizableLinkCard,
-                    customizableLinkCard,
-                    customizableLinkCard,
-                    customizableLinkCard,
-                    customizableLinkCard,
-                    customizableLinkCard,
-                    customizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
+                    mockCustomizableLinkCard,
                 ],
             } as LinkPage,
         ],
@@ -42,7 +45,7 @@ export const FewLinks = () => ({
         linkPages: [
             {
                 title: 'Few links on this page',
-                linkCards: [linkCardWithDescription, linkCardWithDescription],
+                linkCards: [mockLinkCardWithDescription, mockLinkCardWithDescription],
             } as LinkPage,
         ],
     },
@@ -55,30 +58,30 @@ export const ManyLink = () => ({
             {
                 title: 'Many links on this page',
                 linkCards: [
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
-                    linkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
+                    mockLinkCardWithoutDescription,
                 ],
             } as LinkPage,
         ],
