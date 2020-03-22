@@ -15,8 +15,8 @@ describe('LinkComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LinkComponent);
         component = fixture.componentInstance;
-        component.href = 'oranges';
-        component.label = 'grapes';
+        component.link.href = 'oranges';
+        component.link.label = 'grapes';
         fixture.detectChanges();
         compiled = fixture.debugElement.nativeElement;
     });
@@ -35,7 +35,7 @@ describe('LinkComponent', () => {
 
     describe('when internal', () => {
         beforeEach(() => {
-            component.isExternal = true;
+            component.link.isInternal = true;
             fixture.detectChanges();
             compiled = fixture.debugElement.nativeElement;
         });
@@ -47,7 +47,7 @@ describe('LinkComponent', () => {
 
     describe('when external', () => {
         beforeEach(() => {
-            component.isExternal = true;
+            component.link.isInternal = false;
             fixture.detectChanges();
             compiled = fixture.debugElement.nativeElement;
         });

@@ -17,8 +17,8 @@ describe('ImageComponent', () => {
         fixture = TestBed.createComponent(ImageComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        component.src = 'oranges';
-        component.alt = 'grapes';
+        component.image.src = 'oranges';
+        component.image.alt = 'grapes';
         fixture.detectChanges();
         compiled = fixture.debugElement.nativeElement;
     });
