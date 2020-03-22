@@ -15,14 +15,21 @@ export * from './lib/shared/components/link/link.component';
 
 /* Navigation */
 export * from './lib/navigations/navigations.module';
+/* Side Nav */
+export * from './lib/navigations/side-nav/side-nav.module';
 /* Components */
-export * from './lib/navigations/components/side-nav/side-nav.component';
+export * from './lib/navigations/side-nav/components/side-nav/side-nav.component';
+export * from './lib/navigations/side-nav/components/side-nav-item/side-nav-item.component';
+export * from './lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.component';
 
 /* Containers */
 export * from './lib/containers/containers.module';
 /* Components */
 export * from './lib/containers/components/page-container/page-container.component';
+export * from './lib/containers/components/navigation-container/navigation-container.component';
 
+/* Page */
+export * from './lib/pages/pages.module';
 /* Link Page */
 export * from './lib/pages/link-page/link-page.module';
 export * from './lib/pages/link-page/link-page.component';
