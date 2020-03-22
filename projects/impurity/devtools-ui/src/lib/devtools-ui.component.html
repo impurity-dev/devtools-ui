@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="position-absolute z-2 mat-elevation-z8">
+    <mat-toolbar-row>
+        <devtools-image id="icon-container" class="d-flex flex-column justify-content-center mr-2" [image]="icon"></devtools-image>
+        <span>{{ title }}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container id="container" fullscreen>
+    <mat-sidenav mode="side" opened>
+        <devtools-side-nav></devtools-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <devtools-link-page *ngFor="let linkPage of linkPages" [linkPage]="linkPage"></devtools-link-page>
+    </mat-sidenav-content>
+</mat-sidenav-container>
