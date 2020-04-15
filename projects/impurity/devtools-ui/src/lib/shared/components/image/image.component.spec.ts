@@ -1,11 +1,31 @@
+import { ComponentMock } from './../../../../../mocks/component.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ImageComponent } from './image.component';
+
+class ImageComponentMock extends ComponentMock<ImageComponent> {
+    set imageSrc(value: string) {
+        this.component.image.src = value;
+    }
+
+    set imageAlt(value: string) {
+        this.component.image.alt = value;
+    }
+
+    get imageSrc(): string {
+        this.fixture.detectChanges();
+        return this.compiled.querySelector('img').src;
+    }
+
+    get imageAlt(): string {
+        this.fixture.detectChanges();
+        return this.compiled.querySelector('img').alt;
+    }
+}
 
 describe('ImageComponent', () => {
     let component: ImageComponent;
     let fixture: ComponentFixture<ImageComponent>;
-    let compiled: any;
+    let page: ImageComponentMock;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -16,11 +36,9 @@ describe('ImageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ImageComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
         component.image.src = 'oranges';
         component.image.alt = 'grapes';
-        fixture.detectChanges();
-        compiled = fixture.debugElement.nativeElement;
+        page = new ImageComponentMock(component, fixture);
     });
 
     it('should create', () => {
@@ -28,10 +46,12 @@ describe('ImageComponent', () => {
     });
 
     it('should set link href', () => {
-        fixture.whenStable().then(() => expect(compiled.querySelector('img').src).toContain('oranges'));
+        page.imageSrc = 'oranges';
+        expect(page.imageSrc).toContain('oranges');
     });
 
     it('should set link label', () => {
-        fixture.whenStable().then(() => expect(compiled.querySelector('img').alt).toContain('grapes'));
+        page.imageAlt = 'grapes';
+        expect(page.imageAlt).toContain('grapes');
     });
 });
