@@ -1,4 +1,4 @@
-<devtools-page-container>
+<devtools-page-container *ngIf="linkPage; else noPage">
     <page-title>
         {{ linkPage.title }}
     </page-title>
@@ -6,3 +6,5 @@
         <devtools-link-card-list [linkCards]="linkPage.linkCards"></devtools-link-card-list>
     </page-content>
 </devtools-page-container>
+
+<ng-template #noPage>No Link Page Provided</ng-template>

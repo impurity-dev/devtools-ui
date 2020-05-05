@@ -12,12 +12,10 @@ class ImageComponentMock extends ComponentMock<ImageComponent> {
     }
 
     get imageSrc(): string {
-        this.fixture.detectChanges();
         return this.compiled.querySelector('img').src;
     }
 
     get imageAlt(): string {
-        this.fixture.detectChanges();
         return this.compiled.querySelector('img').alt;
     }
 }
@@ -36,8 +34,6 @@ describe('ImageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ImageComponent);
         component = fixture.componentInstance;
-        component.image.src = 'oranges';
-        component.image.alt = 'grapes';
         page = new ImageComponentMock(component, fixture);
     });
 
@@ -46,12 +42,18 @@ describe('ImageComponent', () => {
     });
 
     it('should set link href', () => {
-        page.imageSrc = 'oranges';
+        const image = new Image();
+        image.src = 'oranges';
+        component.image = image;
+        fixture.detectChanges();
         expect(page.imageSrc).toContain('oranges');
     });
 
     it('should set link label', () => {
-        page.imageAlt = 'grapes';
+        const image = new Image();
+        image.alt = 'grapes';
+        component.image = image;
+        fixture.detectChanges();
         expect(page.imageAlt).toContain('grapes');
     });
 });

@@ -1,1 +1,3 @@
-<img class="img-fluid" src="{{ image.src }}" alt="{{ image.alt }}" />
+<img *ngIf="image; else noImage" class="img-fluid" src="{{ image.src }}" alt="{{ image.alt }}" />
+
+<ng-template #noImage>No image provided</ng-template>

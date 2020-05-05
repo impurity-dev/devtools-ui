@@ -1,12 +1,16 @@
-<ng-container *ngIf="!link.isInternal; else internal">
-    <!-- FIXME: External links are broken -->
-    <a href="{{ link.href }}">
-        <span>{{ link.label }}</span>
-    </a>
-</ng-container>
+<div *ngIf="link; else noLink">
+    <ng-container *ngIf="!link.isInternal; else internal">
+        <!-- FIXME: External links are broken -->
+        <a href="{{ link.href }}">
+            <span>{{ link.label }}</span>
+        </a>
+    </ng-container>
 
-<ng-template #internal>
-    <a [routerLink]="link.href">
-        <span>{{ link.label }}</span>
-    </a>
-</ng-template>
+    <ng-template #internal>
+        <a [routerLink]="link.href">
+            <span>{{ link.label }}</span>
+        </a>
+    </ng-template>
+</div>
+
+<ng-template #noLink>No Link Provided</ng-template>
