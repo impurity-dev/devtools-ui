@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+<<<<<<< HEAD
 import { RouterTestingModule } from '@angular/router/testing';
 import Link from '../../models/link';
 import { ComponentMock } from './../../../../../mocks/component.mock';
@@ -31,25 +32,44 @@ describe('LinkComponent', () => {
     let component: LinkComponent;
     let fixture: ComponentFixture<LinkComponent>;
     let page: LinkComponentMock;
+=======
+import { LinkComponent } from './link.component';
+
+describe('LinkComponent', () => {
+    let component: LinkComponent;
+    let fixture: ComponentFixture<LinkComponent>;
+    let compiled: any;
+>>>>>>> master
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [LinkComponent],
+<<<<<<< HEAD
             imports: [RouterTestingModule],
+=======
+>>>>>>> master
         }).compileComponents();
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(LinkComponent);
         component = fixture.componentInstance;
+<<<<<<< HEAD
         page = new LinkComponentMock(component, fixture);
         fixture.detectChanges();
+=======
+        component.href = 'oranges';
+        component.label = 'grapes';
+        fixture.detectChanges();
+        compiled = fixture.debugElement.nativeElement;
+>>>>>>> master
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
+<<<<<<< HEAD
     describe('when internal', () => {
         beforeEach(() => {
             page.link = {
@@ -65,11 +85,31 @@ describe('LinkComponent', () => {
 
         it('should set link label', () => {
             expect(page.internalLabel).toContain('oranges');
+=======
+    it('should set link href', () => {
+        fixture.whenStable().then(() => expect(compiled.querySelector('a').href).toContain('oranges'));
+    });
+
+    it('should set link label', () => {
+        fixture.whenStable().then(() => expect(compiled.querySelector('a').innerHTML).toContain('grapes'));
+    });
+
+    describe('when internal', () => {
+        beforeEach(() => {
+            component.isExternal = true;
+            fixture.detectChanges();
+            compiled = fixture.debugElement.nativeElement;
+        });
+
+        it('should create', () => {
+            expect(component).toBeTruthy();
+>>>>>>> master
         });
     });
 
     describe('when external', () => {
         beforeEach(() => {
+<<<<<<< HEAD
             page.link = {
                 href: 'apples',
                 label: 'oranges',
@@ -83,6 +123,15 @@ describe('LinkComponent', () => {
 
         it('should set link label', () => {
             expect(page.externalLabel).toContain('oranges');
+=======
+            component.isExternal = true;
+            fixture.detectChanges();
+            compiled = fixture.debugElement.nativeElement;
+        });
+
+        it('should create', () => {
+            expect(component).toBeTruthy();
+>>>>>>> master
         });
     });
 });

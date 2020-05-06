@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LinkCardListComponent } from './link-card-list.component';
 
 describe('LinkCardListComponent', () => {
