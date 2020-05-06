@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     stories: ['../projects/**/*.stories.ts'],
     addons: [
