@@ -7,12 +7,12 @@ class ImageComponentMock extends ComponentMock<ImageComponent> {
         this.component.image.src = value;
     }
 
-    set imageAlt(value: string) {
-        this.component.image.alt = value;
-    }
-
     get imageSrc(): string {
         return this.compiled.querySelector('img').src;
+    }
+
+    set imageAlt(value: string) {
+        this.component.image.alt = value;
     }
 
     get imageAlt(): string {
