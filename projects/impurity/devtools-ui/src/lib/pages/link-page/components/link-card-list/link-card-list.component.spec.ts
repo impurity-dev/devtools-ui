@@ -1,25 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { LinkCardListComponent } from './link-card-list.component';
 
-import { LinkListComponent } from './link-card-list.component';
+describe('LinkCardListComponent', () => {
+    let component: LinkCardListComponent;
+    let fixture: ComponentFixture<LinkCardListComponent>;
 
-describe('LinkListComponent', () => {
-  let component: LinkListComponent;
-  let fixture: ComponentFixture<LinkListComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [LinkCardListComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LinkListComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(LinkCardListComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LinkListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -1,11 +1,29 @@
+import { ComponentMock } from './../../../../../mocks/component.mock';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ImageComponent } from './image.component';
+
+class ImageComponentMock extends ComponentMock<ImageComponent> {
+    set imageSrc(value: string) {
+        this.component.image.src = value;
+    }
+
+    get imageSrc(): string {
+        return this.compiled.querySelector('img').src;
+    }
+
+    set imageAlt(value: string) {
+        this.component.image.alt = value;
+    }
+
+    get imageAlt(): string {
+        return this.compiled.querySelector('img').alt;
+    }
+}
 
 describe('ImageComponent', () => {
     let component: ImageComponent;
     let fixture: ComponentFixture<ImageComponent>;
-    let compiled: any;
+    let page: ImageComponentMock;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -16,11 +34,7 @@ describe('ImageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ImageComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
-        component.src = 'oranges';
-        component.alt = 'grapes';
-        fixture.detectChanges();
-        compiled = fixture.debugElement.nativeElement;
+        page = new ImageComponentMock(component, fixture);
     });
 
     it('should create', () => {
@@ -28,10 +42,18 @@ describe('ImageComponent', () => {
     });
 
     it('should set link href', () => {
-        fixture.whenStable().then(() => expect(compiled.querySelector('img').src).toContain('oranges'));
+        const image = new Image();
+        image.src = 'oranges';
+        component.image = image;
+        fixture.detectChanges();
+        expect(page.imageSrc).toContain('oranges');
     });
 
     it('should set link label', () => {
-        fixture.whenStable().then(() => expect(compiled.querySelector('img').alt).toContain('grapes'));
+        const image = new Image();
+        image.alt = 'grapes';
+        component.image = image;
+        fixture.detectChanges();
+        expect(page.imageAlt).toContain('grapes');
     });
 });

@@ -1,4 +1,4 @@
-import '!style-loader!css-loader!../dist/impurity/devtools-ui/css/styles.css'; // Load local css
+import '!style-loader!css-loader!../dist/storybook-assets/styles/css/styles.css';
 import { addParameters } from '@storybook/angular';
 
 addParameters({
