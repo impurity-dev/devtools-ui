@@ -1,5 +1,5 @@
 import { boolean, text } from '@storybook/addon-knobs';
-import Link from '../src/lib/shared/models/link';
+import Link from '../src/lib/shared/models/link.model';
 
 export const mockCustomizableLink: Link = {
     href: text('Link href', 'www.google.com'),

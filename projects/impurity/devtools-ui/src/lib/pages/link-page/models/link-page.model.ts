@@ -1,6 +1,7 @@
+import { Page } from './../../../shared/models/page.model';
 import { LinkCard } from './link-card.model';
 
-export interface LinkPage {
+export interface LinkPage extends Page {
     title: string;
     linkCards: LinkCard[];
 }
