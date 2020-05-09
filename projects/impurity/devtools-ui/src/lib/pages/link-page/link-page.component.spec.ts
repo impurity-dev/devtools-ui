@@ -1,5 +1,5 @@
+import { PageRouterModule } from './../page-router/page-router.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LinkPageComponent } from './link-page.component';
 
 describe('LinkPageComponent', () => {

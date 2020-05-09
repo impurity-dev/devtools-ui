@@ -7,5 +7,9 @@ import { SideNavItem } from './../../models/side-nav-item.model';
     styleUrls: ['./side-nav-item-list.component.scss'],
 })
 export class SideNavItemListComponent {
-    @Input() sideItems: SideNavItem[];
+    @Input() sideNavItems: SideNavItem[];
+
+    trackByFn(index: number, sideNavItem: SideNavItem) {
+        return index;
+    }
 }

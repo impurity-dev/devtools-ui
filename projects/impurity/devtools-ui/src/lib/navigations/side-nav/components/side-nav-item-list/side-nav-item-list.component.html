@@ -1,1 +1,8 @@
-<p>side-nav-item-list works!</p>
+<ng-container *ngIf="sideNavItem; else empty">
+    <devtools-side-nav-item
+        *ngFor="let sideNavItem of sideNavItems; trackBy: trackByFn"
+        [sideNavItem]="sideNavItem"
+    ></devtools-side-nav-item>
+</ng-container>
+
+<ng-template #empty>No Side Nav Items Provided</ng-template>

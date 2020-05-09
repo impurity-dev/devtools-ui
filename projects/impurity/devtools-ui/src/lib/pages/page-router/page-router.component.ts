@@ -13,6 +13,8 @@ export class PageRouterComponent implements OnInit {
     constructor(private readonly routerService: RouterService) {}
 
     ngOnInit() {
-        this.routerService.generateRoutes(this.linkPages);
+        if (!!this.linkPages) {
+            this.routerService.generateRoutes(this.linkPages);
+        }
     }
 }

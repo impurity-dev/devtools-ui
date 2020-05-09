@@ -7,5 +7,5 @@ import { SideNavItem } from './../../models/side-nav-item.model';
     styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent {
-    @Input() sideItems: SideNavItem[];
+    @Input() sideNavItems: SideNavItem[];
 }

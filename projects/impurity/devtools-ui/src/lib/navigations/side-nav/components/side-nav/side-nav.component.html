@@ -1,1 +1,5 @@
-<devtools-side-nav-item-list [sideItems]="sideItems"></devtools-side-nav-item-list>
+<ng-container *ngIf="sideNavItems; else empty">
+    <devtools-side-nav-item-list [sideNavItems]="sideNavItems"></devtools-side-nav-item-list>
+</ng-container>
+
+<ng-template #empty>No Side Nav Items Provided</ng-template>
