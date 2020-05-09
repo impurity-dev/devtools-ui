@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Image from '../../models/image';
+import Image from '../../models/image.model';
 
 @Component({
     selector: 'devtools-image',

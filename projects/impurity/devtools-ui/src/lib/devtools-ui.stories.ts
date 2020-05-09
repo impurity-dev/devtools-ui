@@ -23,7 +23,8 @@ export const ConfigurablePage = () => ({
         icon: mockCustomizableImage,
         linkPages: [
             {
-                title: text('Link Page title', 'Developer workspace'),
+                title: text('Title', 'Developer workspace'),
+                path: text('Url path', 'test-path'),
                 linkCards: [
                     mockCustomizableLinkCard,
                     mockCustomizableLinkCard,

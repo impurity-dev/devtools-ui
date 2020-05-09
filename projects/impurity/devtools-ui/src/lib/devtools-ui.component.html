@@ -9,6 +9,6 @@
         <devtools-side-nav></devtools-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>
-        <devtools-link-page *ngFor="let linkPage of linkPages" [linkPage]="linkPage"></devtools-link-page>
+        <devtools-page-router [linkPages]="linkPages"></devtools-page-router>
     </mat-sidenav-content>
 </mat-sidenav-container>
