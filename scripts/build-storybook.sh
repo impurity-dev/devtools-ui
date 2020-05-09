@@ -5,11 +5,14 @@ rm -r ./dist
 ng build @impurity/devtools-ui
 
 # compile styles
-sass projects/impurity/devtools-ui/src/scss/styles.scss dist/storybook-assets/styles/scss/styles.scss --load-path=node_modules
-sass projects/impurity/devtools-ui/src/scss/styles.scss dist/storybook-assets/styles/css/styles.css --load-path=node_modules
+sass projects/impurity/devtools-ui/src/scss/styles.scss dist/public/styles/scss/styles.scss --load-path=node_modules
+sass projects/impurity/devtools-ui/src/scss/styles.scss dist/public/styles/css/styles.css --load-path=node_modules
+
+# copy assets
+cp -r projects/impurity/assets dist/public/assets
 
 # build docs
-compodoc -p tsconfig.json -e json -d ./dist/docs
+compodoc -p tsconfig.json -e json -d ./dist/public/docs
 
 # build storybook
-build-storybook -c .storybook -s dist/storybook-assets -o dist/storybook
+build-storybook -c .storybook -s dist/public -o dist/storybook

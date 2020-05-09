@@ -1,7 +1,7 @@
-import '!style-loader!css-loader!../dist/storybook-assets/styles/css/styles.css';
+import '!style-loader!css-loader!../dist/public/styles/css/styles.css';
 import { addParameters } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import docJson from '../dist/docs/documentation.json';
+import docJson from '../dist/public/docs/documentation.json';
 setCompodocJson(docJson);
 
 addParameters({
