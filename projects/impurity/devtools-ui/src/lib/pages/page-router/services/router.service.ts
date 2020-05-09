@@ -1,8 +1,7 @@
-import { LinkPageComponent } from './../../link-page/link-page.component';
-import { Router, Route } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { LinkPage } from '../../link-page/models/link-page.model';
-import { link } from 'fs';
+import { LinkPageComponent } from './../../link-page/link-page.component';
 
 @Injectable({
     providedIn: 'root',
