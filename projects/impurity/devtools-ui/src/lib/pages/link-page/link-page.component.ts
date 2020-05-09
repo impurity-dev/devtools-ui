@@ -11,6 +11,6 @@ export class LinkPageComponent {
     @Input() linkPage: LinkPage;
 
     public constructor(private readonly route: ActivatedRoute, private readonly router: Router) {
-        this.linkPage = route.snapshot.data['page'];
+        this.linkPage = route.snapshot.data.page;
     }
 }
