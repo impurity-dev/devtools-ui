@@ -1,3 +1,4 @@
+import { descriptionLinkPage, noDescriptionLinkPage, customizableLinkPage } from './../../../../mocks/link-page.mock';
 import { mockCustomizableLinkCard, mockLinkCardWithDescription, mockLinkCardWithoutDescription } from './../../../../mocks/link-card.mock';
 import { CommonModule } from '@angular/common';
 import { object, text } from '@storybook/addon-knobs';
@@ -6,7 +7,7 @@ import { LinkPageComponent } from './link-page.component';
 import { LinkPageModule } from './link-page.module';
 
 export default {
-    title: 'Link Page',
+    title: 'Pages/Link Page',
     decorators: [
         moduleMetadata({
             imports: [CommonModule, LinkPageModule],
@@ -17,50 +18,20 @@ export default {
 export const Customizable = () => ({
     component: LinkPageComponent,
     props: {
-        linkPage: {
-            title: text('Link page title', 'Developer Workspace'),
-            linkCards: object('Link list', [
-                mockCustomizableLinkCard,
-                mockCustomizableLinkCard,
-                mockCustomizableLinkCard,
-                mockCustomizableLinkCard,
-                mockCustomizableLinkCard,
-                mockCustomizableLinkCard,
-            ]),
-        },
+        linkPage: customizableLinkPage,
     },
 });
 
 export const WithDescriptions = () => ({
     component: LinkPageComponent,
     props: {
-        linkPage: {
-            title: 'Sample page title',
-            linkCards: [
-                mockLinkCardWithDescription,
-                mockLinkCardWithDescription,
-                mockLinkCardWithDescription,
-                mockLinkCardWithDescription,
-                mockLinkCardWithDescription,
-                mockLinkCardWithDescription,
-            ],
-        },
+        linkPage: descriptionLinkPage,
     },
 });
 
 export const WithoutDescriptions = () => ({
     component: LinkPageComponent,
     props: {
-        linkPage: {
-            title: 'Sample page title',
-            linkCards: [
-                mockLinkCardWithoutDescription,
-                mockLinkCardWithoutDescription,
-                mockLinkCardWithoutDescription,
-                mockLinkCardWithoutDescription,
-                mockLinkCardWithoutDescription,
-                mockLinkCardWithoutDescription,
-            ],
-        },
+        linkPage: noDescriptionLinkPage,
     },
 });
