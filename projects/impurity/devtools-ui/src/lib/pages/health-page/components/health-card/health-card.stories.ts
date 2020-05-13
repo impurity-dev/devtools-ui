@@ -5,7 +5,7 @@ import { HealthPageModule } from './../../health-page.module';
 import { HealthCardComponent } from './health-card.component';
 
 export default {
-    title: 'Health Card',
+    title: 'Pages/Health Page/Health Card',
     component: HealthCardComponent,
     decorators: [
         moduleMetadata({

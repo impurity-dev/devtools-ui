@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 
 export default {
-    title: 'Image',
+    title: 'Shared/Image',
     component: ImageComponent,
     decorators: [
         moduleMetadata({

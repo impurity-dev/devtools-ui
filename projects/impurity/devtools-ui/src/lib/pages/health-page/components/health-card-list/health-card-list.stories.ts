@@ -5,7 +5,7 @@ import { mockCustomizableHealthCard } from '../../../../../../mocks/health-card.
 import { HealthPageModule } from '../../health-page.module';
 
 export default {
-    title: 'Health Card',
+    title: 'Pages/Health Page/Health Card',
     component: HealthCardListComponent,
     decorators: [
         moduleMetadata({
@@ -24,13 +24,33 @@ export const Configurable = () => ({
 export const FewCards = () => ({
     component: HealthCardListComponent,
     props: {
-        healthCards: [mockCustomizableHealthCard],
+        healthCards: [mockCustomizableHealthCard, mockCustomizableHealthCard],
     },
 });
 
 export const ManyCards = () => ({
     component: HealthCardListComponent,
     props: {
-        healthCards: [mockCustomizableHealthCard],
+        healthCards: [
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+            mockCustomizableHealthCard,
+        ],
     },
 });

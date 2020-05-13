@@ -42,12 +42,14 @@ export const WithoutDescriptions = () => ({
 });
 
 export const FewLinks = () => ({
+    component: LinkPageComponent,
     props: {
         pages: [fewLinksLinkPage],
     },
 });
 
 export const ManyLink = () => ({
+    component: LinkPageComponent,
     props: {
         pages: [manyLinksLinkPage],
     },

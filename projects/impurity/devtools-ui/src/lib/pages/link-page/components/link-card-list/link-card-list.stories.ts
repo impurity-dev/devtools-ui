@@ -11,7 +11,7 @@ import { LinkPageModule } from './../../link-page.module';
 import { LinkCardListComponent } from './link-card-list.component';
 
 export default {
-    title: 'Link card list',
+    title: 'Pages/Link Page/Link card list',
     component: LinkCardListComponent,
     decorators: [
         moduleMetadata({

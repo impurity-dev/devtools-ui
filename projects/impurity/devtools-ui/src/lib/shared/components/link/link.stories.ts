@@ -5,7 +5,7 @@ import { SharedModule } from './../../shared.module';
 import { LinkComponent } from './link.component';
 
 export default {
-    title: 'Link',
+    title: 'Shared/Link',
     component: LinkComponent,
     decorators: [
         moduleMetadata({
