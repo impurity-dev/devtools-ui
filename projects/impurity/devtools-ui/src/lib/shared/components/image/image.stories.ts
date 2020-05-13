@@ -6,6 +6,7 @@ import { moduleMetadata } from '@storybook/angular';
 
 export default {
     title: 'Image',
+    component: ImageComponent,
     decorators: [
         moduleMetadata({
             imports: [CommonModule, SharedModule],

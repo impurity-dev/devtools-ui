@@ -6,6 +6,7 @@ import { LinkComponent } from './link.component';
 
 export default {
     title: 'Link',
+    component: LinkComponent,
     decorators: [
         moduleMetadata({
             imports: [CommonModule, SharedModule],

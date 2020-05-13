@@ -10,6 +10,7 @@ import { LinkCardComponent } from './link-card.component';
 
 export default {
     title: 'Link Card',
+    component: LinkCardComponent,
     decorators: [
         moduleMetadata({
             imports: [CommonModule, LinkPageModule],

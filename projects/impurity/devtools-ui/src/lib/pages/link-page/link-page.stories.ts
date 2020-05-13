@@ -1,13 +1,18 @@
-import { descriptionLinkPage, noDescriptionLinkPage, customizableLinkPage } from './../../../../mocks/link-page.mock';
-import { mockCustomizableLinkCard, mockLinkCardWithDescription, mockLinkCardWithoutDescription } from './../../../../mocks/link-card.mock';
 import { CommonModule } from '@angular/common';
-import { object, text } from '@storybook/addon-knobs';
 import { moduleMetadata } from '@storybook/angular';
+import {
+    customizableLinkPage,
+    descriptionLinkPage,
+    fewLinksLinkPage,
+    manyLinksLinkPage,
+    noDescriptionLinkPage,
+} from './../../../../mocks/link-page.mock';
 import { LinkPageComponent } from './link-page.component';
 import { LinkPageModule } from './link-page.module';
 
 export default {
     title: 'Pages/Link Page',
+    component: LinkPageComponent,
     decorators: [
         moduleMetadata({
             imports: [CommonModule, LinkPageModule],
@@ -33,5 +38,17 @@ export const WithoutDescriptions = () => ({
     component: LinkPageComponent,
     props: {
         linkPage: noDescriptionLinkPage,
+    },
+});
+
+export const FewLinks = () => ({
+    props: {
+        pages: [fewLinksLinkPage],
+    },
+});
+
+export const ManyLink = () => ({
+    props: {
+        pages: [manyLinksLinkPage],
     },
 });

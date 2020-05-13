@@ -1,4 +1,4 @@
-import { Page } from './pages/models/page.model';
+import { Page } from './pages/shared/models/page.model';
 import { LinkPageComponent } from './pages/link-page/link-page.component';
 import { LinkPage } from './pages/link-page/models/link-page.model';
 import { Component, Input } from '@angular/core';

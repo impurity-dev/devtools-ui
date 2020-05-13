@@ -1,4 +1,4 @@
-import { Page } from '../../models/page.model';
+import { Page } from '../../shared/models/page.model';
 import { LinkPageComponent } from './../link-page.component';
 import { LinkCard } from './link-card.model';
 
