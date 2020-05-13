@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { mockCustomizableHealthCard } from './../../../../mocks/health-card.mock';
-import { mockFewHealthLinksHealthPage, mockManyHealthLinksHealthPage } from './../../../../mocks/health-page.mock';
+import {
+    mockFewHealthLinksHealthPage,
+    mockManyHealthLinksHealthPage,
+    mockCustomizableHealthPage,
+} from './../../../../mocks/health-page.mock';
 import { HealthPageComponent } from './health-page.component';
 import { HealthPageModule } from './health-page.module';
 
@@ -18,7 +22,7 @@ export default {
 export const Customizable = () => ({
     component: HealthPageComponent,
     props: {
-        healthPage: mockCustomizableHealthCard,
+        healthPage: mockCustomizableHealthPage,
     },
 });
 

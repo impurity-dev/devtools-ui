@@ -5,7 +5,7 @@ import { mockCustomizableHealthCard } from '../../../../../../mocks/health-card.
 import { HealthPageModule } from '../../health-page.module';
 
 export default {
-    title: 'Pages/Health Page/Health Card',
+    title: 'Pages/Health Page/Health Card List',
     component: HealthCardListComponent,
     decorators: [
         moduleMetadata({

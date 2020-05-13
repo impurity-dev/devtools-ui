@@ -2,7 +2,7 @@ import { text } from '@storybook/addon-knobs';
 import { HealthPage } from './../src/lib/pages/health-page/models/health-page.model';
 import { mockCustomizableHealthCard, mockHealthCard } from './health-card.mock';
 
-export const mockCustomizableHealthPage = new HealthPage(text('Title', 'Developer workspace'), text('Url path', 'test-path'), [
+export const mockCustomizableHealthPage = new HealthPage(text('Title', 'Health Page'), text('Url path', 'test-path'), [
     mockCustomizableHealthCard,
     mockCustomizableHealthCard,
     mockCustomizableHealthCard,

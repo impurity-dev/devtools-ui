@@ -17,6 +17,6 @@ export default {
 export const Configurable = () => ({
     component: HealthCardComponent,
     props: {
-        linkCard: mockCustomizableHealthCard,
+        healthCard: mockCustomizableHealthCard,
     },
 });
