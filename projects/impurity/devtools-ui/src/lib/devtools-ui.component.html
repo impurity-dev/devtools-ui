@@ -6,7 +6,7 @@
 </mat-toolbar>
 <mat-sidenav-container id="container" fullscreen>
     <mat-sidenav mode="side" opened>
-        <devtools-side-nav></devtools-side-nav>
+        <devtools-side-nav [sideNavItems]="sideNavItems"></devtools-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>
         <devtools-page-router [pages]="pages"></devtools-page-router>

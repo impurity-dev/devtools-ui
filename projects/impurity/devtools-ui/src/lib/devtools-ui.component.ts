@@ -1,9 +1,7 @@
-import { Page } from './pages/models/page.model';
-import { LinkPageComponent } from './pages/link-page/link-page.component';
-import { LinkPage } from './pages/link-page/models/link-page.model';
+import { SideNavItem } from './navigations/side-nav/models/side-nav-item.model';
 import { Component, Input } from '@angular/core';
+import { Page } from './pages/models/page.model';
 import Image from './shared/models/image.model';
-import { Router, Routes, Route } from '@angular/router';
 
 @Component({
     selector: 'devtools-ui',
@@ -14,4 +12,15 @@ export class DevtoolsUiComponent {
     @Input() title: string;
     @Input() icon: Image;
     @Input() pages: Page[];
+    sideNavItems: SideNavItem[] = [];
+
+    ngOnInit() {
+        this.sideNavItems = this.createSideNavItems();
+    }
+
+    private createSideNavItems() {
+        const sideNavItems: SideNavItem[] = [];
+        this.pages.forEach((page) => sideNavItems.push(new SideNavItem(page)));
+        return sideNavItems;
+    }
 }

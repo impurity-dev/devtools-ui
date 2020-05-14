@@ -1,7 +1,7 @@
 <ng-container *ngIf="sideNavItems; else empty">
-    <ng-container *ngFor="let sideNavItem of sideNavItems; trackBy: trackByFn">
+    <div class="d-flex flex-column" *ngFor="let sideNavItem of sideNavItems; trackBy: trackByFn">
         <devtools-side-nav-item [sideNavItem]="sideNavItem"></devtools-side-nav-item>
-    </ng-container>
+    </div>
 </ng-container>
 
 <ng-template #empty>No Side Nav Items Provided</ng-template>

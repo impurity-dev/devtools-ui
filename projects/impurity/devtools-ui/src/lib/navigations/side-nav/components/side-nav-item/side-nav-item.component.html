@@ -1,5 +1,7 @@
 <ng-container *ngIf="sideNavItem; else empty">
-    <span>{{ sideNavItem.title }}</span>
+    <div class="d-flex">
+        <span>{{ sideNavItem.title }}</span>
+    </div>
 </ng-container>
 
 <ng-template #empty>No Side Nav Item Provided</ng-template>
