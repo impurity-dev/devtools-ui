@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Page } from '../shared/models/page.model';
+import { Page } from '../models/page.model';
 import { RouterService } from './services/router.service';
 
 @Component({
