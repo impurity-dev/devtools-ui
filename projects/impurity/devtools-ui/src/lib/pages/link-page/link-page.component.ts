@@ -1,6 +1,6 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LinkPage } from './models/link-page.model';
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'devtools-link-page',
@@ -8,9 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./link-page.component.scss'],
 })
 export class LinkPageComponent {
-    @Input() linkPage: LinkPage;
+    linkPage: LinkPage;
 
-    public constructor(private readonly route: ActivatedRoute, private readonly router: Router) {
+    public constructor(private readonly route: ActivatedRoute) {
         this.linkPage = route.snapshot.data.page;
     }
 }

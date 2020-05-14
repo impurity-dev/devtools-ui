@@ -9,7 +9,8 @@ import { LinkPageModule } from '../../link-page.module';
 import { LinkCardComponent } from './link-card.component';
 
 export default {
-    title: 'Link Card',
+    title: 'Pages/Link Page/Link Card',
+    component: LinkCardComponent,
     decorators: [
         moduleMetadata({
             imports: [CommonModule, LinkPageModule],

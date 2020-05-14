@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<div *ngIf="pages && pages.length > 0; else noPages">
+    <router-outlet></router-outlet>
+</div>
+
+<ng-template #noPages>No Pages Provided</ng-template>

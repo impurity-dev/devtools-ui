@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LinkPage } from '../link-page/models/link-page.model';
+import { Page } from '../shared/models/page.model';
 import { RouterService } from './services/router.service';
 
 @Component({
@@ -8,13 +8,13 @@ import { RouterService } from './services/router.service';
     styleUrls: ['./page-router.component.scss'],
 })
 export class PageRouterComponent implements OnInit {
-    @Input() linkPages: LinkPage[];
+    @Input() pages: Page[];
 
     constructor(private readonly routerService: RouterService) {}
 
     ngOnInit() {
-        if (!!this.linkPages) {
-            this.routerService.generateRoutes(this.linkPages);
+        if (!!this.pages && !!this.pages.length) {
+            this.routerService.generateRoutes(this.pages);
         }
     }
 }
