@@ -21,6 +21,7 @@ export class DevtoolsUiComponent {
     private createSideNavItems() {
         const sideNavItems: SideNavItem[] = [];
         this.pages.forEach((page) => sideNavItems.push(new SideNavItem(page)));
+        console.log(this.pages);
         return sideNavItems;
     }
 }

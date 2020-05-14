@@ -1,7 +1,7 @@
 <ng-container *ngIf="sideNavItem; else empty">
-    <div class="d-flex">
-        <span>{{ sideNavItem.title }}</span>
-    </div>
+    <a class="navigation-item" mat-list-item [routerLink]="sideNavItem.path" routerLinkActive="active">
+        <span class="navigation-item-label">{{ sideNavItem.title }}</span>
+    </a>
 </ng-container>
 
 <ng-template #empty>No Side Nav Item Provided</ng-template>
