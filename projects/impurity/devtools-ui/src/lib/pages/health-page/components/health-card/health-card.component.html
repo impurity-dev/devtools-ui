@@ -1,0 +1,8 @@
+<mat-card *ngIf="healthCard; else noCard" class="card-container mat-elevation-z4">
+    <mat-card-title class="d-flex flex-column align-items-center">
+        <span>{{ healthCard.title }}</span>
+        <span>{{ healthCard.endpoint }}</span>
+    </mat-card-title>
+</mat-card>
+
+<ng-template #noCard>No Health Card Provided</ng-template>
