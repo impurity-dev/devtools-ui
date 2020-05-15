@@ -1,10 +1,10 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
-import { mockCustomizableHealthCard } from './../../../../mocks/health-card.mock';
 import {
+    mockCustomizableHealthPage,
     mockFewHealthLinksHealthPage,
     mockManyHealthLinksHealthPage,
-    mockCustomizableHealthPage,
 } from './../../../../mocks/health-page.mock';
 import { HealthPageComponent } from './health-page.component';
 import { HealthPageModule } from './health-page.module';
@@ -14,7 +14,7 @@ export default {
     component: HealthPageComponent,
     decorators: [
         moduleMetadata({
-            imports: [CommonModule, HealthPageModule],
+            imports: [CommonModule, HealthPageModule, RouterTestingModule],
         }),
     ],
 };

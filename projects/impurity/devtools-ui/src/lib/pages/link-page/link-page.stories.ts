@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import {
@@ -15,7 +16,7 @@ export default {
     component: LinkPageComponent,
     decorators: [
         moduleMetadata({
-            imports: [CommonModule, LinkPageModule],
+            imports: [CommonModule, LinkPageModule, RouterTestingModule],
         }),
     ],
 };
