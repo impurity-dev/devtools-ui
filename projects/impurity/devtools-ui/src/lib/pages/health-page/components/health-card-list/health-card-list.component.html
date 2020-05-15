@@ -1,4 +1,4 @@
-<div *ngIf="healthCards; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
+<div *ngIf="healthCards?.length; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
     <devtools-health-card *ngFor="let healthCard of healthCards" [healthCard]="healthCard" class="p-3"></devtools-health-card>
 </div>
 

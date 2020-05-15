@@ -1,4 +1,4 @@
-<div *ngIf="linkCards; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
+<div *ngIf="linkCards?.length; else empty" class="d-flex flex-row flex-wrap w-100 h-100">
     <devtools-link-card *ngFor="let linkCard of linkCards" [linkCard]="linkCard" class="p-3"></devtools-link-card>
 </div>
 

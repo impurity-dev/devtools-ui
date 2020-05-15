@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SideNavItem } from './../../models/side-nav-item.model';
+import { SideNavItem } from './models/side-nav-item.model';
 
 @Component({
     selector: 'devtools-side-nav',

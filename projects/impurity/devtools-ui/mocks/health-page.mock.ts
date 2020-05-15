@@ -13,6 +13,15 @@ export const mockCustomizableHealthPage = new HealthPage(text('Title', 'Health P
     mockCustomizableHealthCard,
 ]);
 
+export const mockHealthPage = new HealthPage('Health Page', 'health-page-path', [
+    mockHealthCard,
+    mockHealthCard,
+    mockHealthCard,
+    mockHealthCard,
+    mockHealthCard,
+    mockHealthCard,
+]);
+
 export const mockFewHealthLinksHealthPage = new HealthPage('Few links on this page', 'few-links', [mockHealthCard, mockHealthCard]);
 
 export const mockManyHealthLinksHealthPage = new HealthPage('Many links on this page', 'many-links', [

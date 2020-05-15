@@ -2,7 +2,7 @@ import { text } from '@storybook/addon-knobs';
 import { LinkPage } from './../src/lib/pages/link-page/models/link-page.model';
 import { mockCustomizableLinkCard, mockLinkCardWithDescription, mockLinkCardWithoutDescription } from './link-card.mock';
 
-export const customizableLinkPage = new LinkPage(text('Title', 'Health Page'), text('Url path', 'test-path'), [
+export const customizableLinkPage = new LinkPage(text('Title', 'Link Page'), text('Url path', 'test-path'), [
     mockCustomizableLinkCard,
     mockCustomizableLinkCard,
     mockCustomizableLinkCard,
@@ -11,6 +11,13 @@ export const customizableLinkPage = new LinkPage(text('Title', 'Health Page'), t
     mockCustomizableLinkCard,
     mockCustomizableLinkCard,
     mockCustomizableLinkCard,
+]);
+
+export const mockLinkPage = new LinkPage('Link Page', 'link-page-path', [
+    mockLinkCardWithDescription,
+    mockLinkCardWithDescription,
+    mockLinkCardWithDescription,
+    mockLinkCardWithDescription,
 ]);
 
 export const noDescriptionLinkPage = new LinkPage('No links with description on this page', 'no-description-links', [
