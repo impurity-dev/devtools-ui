@@ -1,7 +1,7 @@
 <ng-container *ngIf="sideNavItem; else empty">
     <mat-list-item>
-        <a class="navigation-item" mat-list-item [routerLink]="sideNavItem.path" routerLinkActive="active">
-            <span class="navigation-item-label">{{ sideNavItem.title }}</span>
+        <a mat-list-item [routerLink]="sideNavItem.path" routerLinkActive="active">
+            <span>{{ sideNavItem.title }}</span>
         </a>
     </mat-list-item>
 </ng-container>

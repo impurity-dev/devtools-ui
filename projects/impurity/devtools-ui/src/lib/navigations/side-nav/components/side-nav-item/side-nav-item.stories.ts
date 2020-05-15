@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { SideNavItemComponent } from './side-nav-item.component';
 import { mockManyHealthLinksHealthPage } from '../../../../../../mocks/health-page.mock';
 import { SideNavItem } from '../../models/side-nav-item.model';
@@ -10,7 +11,7 @@ export default {
     component: SideNavItemComponent,
     decorators: [
         moduleMetadata({
-            imports: [CommonModule, SideNavModule],
+            imports: [CommonModule, SideNavModule, RouterTestingModule],
         }),
     ],
 };
