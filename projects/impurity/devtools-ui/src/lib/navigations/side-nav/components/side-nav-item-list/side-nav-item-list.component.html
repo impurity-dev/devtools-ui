@@ -1,4 +1,4 @@
-<ng-container *ngIf="sideNavItems; else empty">
+<ng-container *ngIf="sideNavItems?.length; else empty">
     <div class="d-flex flex-column" *ngFor="let sideNavItem of sideNavItems; trackBy: trackByFn">
         <mat-list>
             <devtools-side-nav-item [sideNavItem]="sideNavItem"></devtools-side-nav-item>

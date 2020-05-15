@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [RouterModule.forRoot([])],
-    providers: [{ provide: APP_BASE_HREF, useValue: '' }],
+    imports: [RouterModule.forRoot([], { useHash: true })],
+    providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     exports: [RouterModule],
 })
-export class SideNavRoutingModule {}
+export class DevtoolsUiRoutingModule {}

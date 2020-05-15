@@ -1,9 +1,9 @@
-import { mockManyHealthLinksHealthPage } from './../../../../../../mocks/health-page.mock';
-import { SideNavItemListComponent } from './side-nav-item-list.component';
-import { SideNavItem } from './../../models/side-nav-item.model';
-import { SideNavModule } from './../../side-nav.module';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
+import { mockManyHealthLinksHealthPage } from './../../../../../../mocks/health-page.mock';
+import { SideNavItem } from './../../models/side-nav-item.model';
+import { SideNavModule } from './../../side-nav.module';
+import { SideNavItemListComponent } from './side-nav-item-list.component';
 
 export default {
     title: 'Navigations/Side Nav/Item List',
