@@ -1,9 +1,9 @@
 <ng-container *ngIf="sideNavItem; else empty">
-    <mat-list-item>
-        <a mat-list-item [routerLink]="sideNavItem.path" routerLinkActive="active">
-            <span>{{ sideNavItem.title }}</span>
+    <div matRipple class="d-flex flex-row">
+        <a class="justify-content-center" mat-list-item [routerLink]="sideNavItem.path" routerLinkActive="active">
+            <span class="w-100 text-center">{{ sideNavItem.title }}</span>
         </a>
-    </mat-list-item>
+    </div>
 </ng-container>
 
 <ng-template #empty>No Side Nav Item Provided</ng-template>
