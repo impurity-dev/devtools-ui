@@ -1,3 +1,4 @@
+import { DevtoolsUiRoutingModule } from './devtools-ui-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
     imports: [
         BrowserAnimationsModule,
         CommonModule,
+        DevtoolsUiRoutingModule,
         SharedModule,
         PagesModule,
         NavigationsModule,

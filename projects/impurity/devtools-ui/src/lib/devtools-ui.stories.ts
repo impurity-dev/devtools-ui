@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { text } from '@storybook/addon-knobs';
 import { moduleMetadata } from '@storybook/angular';
-import { mockCustomizableHealthPage } from './../../mocks/health-page.mock';
+import { mockFewHealthLinksHealthPage, mockManyHealthLinksHealthPage, mockHealthPage } from './../../mocks/health-page.mock';
 import { mockCustomizableImage } from './../../mocks/image.mock';
-import { customizableLinkPage } from './../../mocks/link-page.mock';
+import { fewLinksLinkPage, mockLinkPage } from './../../mocks/link-page.mock';
 import { DevtoolsUiComponent } from './../lib/devtools-ui.component';
 import { DevtoolsUiModule } from './../lib/devtools-ui.module';
 
@@ -22,7 +22,7 @@ export const ConfigurablePage = () => ({
     props: {
         title: text('App title', 'Personal Application'),
         icon: mockCustomizableImage,
-        pages: [customizableLinkPage, mockCustomizableHealthPage],
+        pages: [mockLinkPage, mockHealthPage],
     },
 });
 

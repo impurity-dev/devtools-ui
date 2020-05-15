@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { Page } from '../../shared/models/page.model';
+import { Page } from '../../models/page.model';
 
 @Injectable({
     providedIn: 'root',

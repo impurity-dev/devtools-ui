@@ -15,7 +15,7 @@ export * from './lib/shared/components/link/link.component';
 export * from './lib/navigations/navigations.module';
 /* Side Nav */
 export * from './lib/navigations/side-nav/side-nav.module';
-export * from './lib/navigations/side-nav/components/side-nav/side-nav.component';
+export * from './lib/navigations/side-nav/side-nav.component';
 export * from './lib/navigations/side-nav/components/side-nav-item/side-nav-item.component';
 export * from './lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.component';
 
