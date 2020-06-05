@@ -9,7 +9,7 @@ sass projects/impurity/devtools-ui/src/scss/styles.scss dist/public/styles/scss/
 sass projects/impurity/devtools-ui/src/scss/styles.scss dist/public/styles/css/styles.css --load-path=node_modules
 
 # copy assets
-cp -r projects/impurity/assets dist/public/assets
+cp -r dist/impurity/devtools-ui/assets dist/public/assets
 
 # build docs
 compodoc -p tsconfig.json -e json -d ./dist/public/docs
