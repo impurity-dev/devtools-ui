@@ -1,0 +1,3497 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "Image",
+            "id": "interface-Image-a8520cf439ec55b49762effbd305deaf",
+            "file": "projects/impurity/devtools-ui/src/lib/shared/models/image.model.ts",
+            "type": "interface",
+            "sourceCode": "export default interface Image {\n    src: string;\n    alt: string;\n}\n",
+            "properties": [
+                {
+                    "name": "alt",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "src",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "Link",
+            "id": "interface-Link-4690b6867f251d08584b1c42f5078f7d",
+            "file": "projects/impurity/devtools-ui/src/lib/shared/models/link.model.ts",
+            "type": "interface",
+            "sourceCode": "export default interface Link {\n    href: string;\n    label: string;\n    isInternal?: boolean;\n}\n",
+            "properties": [
+                {
+                    "name": "href",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "isInternal",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "label",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "LinkCard",
+            "id": "interface-LinkCard-90f88e8330b5e8d6e12997ab062d11e7",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/models/link-card.model.ts",
+            "type": "interface",
+            "sourceCode": "import Image from '../../../shared/models/image.model';\nimport Link from '../../../shared/models/link.model';\n\nexport interface LinkCard {\n    link: Link;\n    image: Image;\n    description?: string;\n}\n",
+            "properties": [
+                {
+                    "name": "description",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "image",
+                    "type": "Image",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "link",
+                    "type": "Link",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "RouterService",
+            "id": "injectable-RouterService-a60158fdb7de4f3432f49d0949649af6",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/page-router/services/router.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "generateLinkPages",
+                    "args": [
+                        {
+                            "name": "pages",
+                            "type": "Page[]"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Route[]",
+                    "typeParameters": [],
+                    "line": 20,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "pages",
+                            "type": "Page[]",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "generateRoutes",
+                    "args": [
+                        {
+                            "name": "pages",
+                            "type": "Page[]"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 11,
+                    "jsdoctags": [
+                        {
+                            "name": "pages",
+                            "type": "Page[]",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Route, Router } from '@angular/router';\nimport { Page } from '../../models/page.model';\n\n@Injectable({\n    providedIn: 'root',\n})\nexport class RouterService {\n    constructor(private readonly router: Router) {}\n\n    generateRoutes(pages: Page[]): void {\n        if (!pages || !pages.length) {\n            throw new Error('No routes to generate');\n        }\n        const routes = this.generateLinkPages(pages);\n        this.router.resetConfig(routes);\n        this.router.navigate([routes[0].path]);\n    }\n\n    private generateLinkPages(pages: Page[]): Route[] {\n        const routes: Route[] = [];\n        pages.forEach((page) => routes.push({ path: page.path, component: page.component, data: { page } }));\n        return routes;\n    }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router"
+                    }
+                ],
+                "line": 8,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "classes": [
+        {
+            "name": "ComponentMock",
+            "id": "class-ComponentMock-f6b43fd68acfce1eed21686b1992e569",
+            "file": "projects/impurity/devtools-ui/mocks/component.mock.ts",
+            "type": "class",
+            "sourceCode": "import { ComponentFixture } from '@angular/core/testing';\n\nexport class ComponentMock<T> {\n    get compiled(): any {\n        return this.fixture.debugElement.nativeElement;\n    }\n\n    constructor(public component: T, public fixture: ComponentFixture<T>) {}\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "component",
+                        "type": "T"
+                    },
+                    {
+                        "name": "fixture",
+                        "type": "ComponentFixture<T>"
+                    }
+                ],
+                "line": 6,
+                "jsdoctags": [
+                    {
+                        "name": "component",
+                        "type": "T",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "fixture",
+                        "type": "ComponentFixture<T>",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "component",
+                    "type": "T",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "fixture",
+                    "type": "ComponentFixture<T>",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "accessors": {
+                "compiled": {
+                    "name": "compiled",
+                    "getSignature": {
+                        "name": "compiled",
+                        "type": "any",
+                        "returnType": "any",
+                        "line": 4
+                    }
+                }
+            },
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "HealthCard",
+            "id": "class-HealthCard-df5a404dcda0efc48f46ef1da89a0e37",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/models/health-card.model.ts",
+            "type": "class",
+            "sourceCode": "export class HealthCard {\n    title: string;\n    endpoint: string;\n}\n",
+            "properties": [
+                {
+                    "name": "endpoint",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "HealthPage",
+            "id": "class-HealthPage-d230b72b86499759941c92024c332b97",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/models/health-page.model.ts",
+            "type": "class",
+            "sourceCode": "import { Page } from '../../models/page.model';\nimport { HealthPageComponent } from './../health-page.component';\nimport { HealthCard } from './health-card.model';\n\nexport class HealthPage extends Page {\n    constructor(title: string, path: string, public readonly healthCards: HealthCard[]) {\n        super(title, path, HealthPageComponent);\n    }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "title",
+                        "type": "string"
+                    },
+                    {
+                        "name": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "healthCards",
+                        "type": "HealthCard[]"
+                    }
+                ],
+                "line": 5,
+                "jsdoctags": [
+                    {
+                        "name": "title",
+                        "type": "string",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "path",
+                        "type": "string",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "healthCards",
+                        "type": "HealthCard[]",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "healthCards",
+                    "type": "HealthCard[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 6,
+                    "modifierKind": [
+                        114,
+                        132
+                    ]
+                },
+                {
+                    "name": "component",
+                    "type": "Type<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ],
+                    "inheritance": {
+                        "file": "Page"
+                    }
+                },
+                {
+                    "name": "path",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ],
+                    "inheritance": {
+                        "file": "Page"
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ],
+                    "inheritance": {
+                        "file": "Page"
+                    }
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "extends": "Page",
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "LinkPage",
+            "id": "class-LinkPage-023e169d1591a056d8b43d9cd622f440",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/models/link-page.model.ts",
+            "type": "class",
+            "sourceCode": "import { Page } from '../../models/page.model';\nimport { LinkPageComponent } from './../link-page.component';\nimport { LinkCard } from './link-card.model';\n\nexport class LinkPage extends Page {\n    constructor(title: string, path: string, public readonly linkCards: LinkCard[]) {\n        super(title, path, LinkPageComponent);\n    }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "title",
+                        "type": "string"
+                    },
+                    {
+                        "name": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "linkCards",
+                        "type": "LinkCard[]"
+                    }
+                ],
+                "line": 5,
+                "jsdoctags": [
+                    {
+                        "name": "title",
+                        "type": "string",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "path",
+                        "type": "string",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "linkCards",
+                        "type": "LinkCard[]",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "linkCards",
+                    "type": "LinkCard[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 6,
+                    "modifierKind": [
+                        114,
+                        132
+                    ]
+                },
+                {
+                    "name": "component",
+                    "type": "Type<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ],
+                    "inheritance": {
+                        "file": "Page"
+                    }
+                },
+                {
+                    "name": "path",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ],
+                    "inheritance": {
+                        "file": "Page"
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ],
+                    "inheritance": {
+                        "file": "Page"
+                    }
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "extends": "Page",
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "Page",
+            "id": "class-Page-afd8827f82f90223845122a89089d5d3",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/models/page.model.ts",
+            "type": "class",
+            "sourceCode": "import { Type } from '@angular/core';\n\nexport class Page {\n    protected constructor(public readonly title: string, public readonly path: string, public readonly component: Type<any>) {}\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "title",
+                        "type": "string"
+                    },
+                    {
+                        "name": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "component",
+                        "type": "Type<any>"
+                    }
+                ],
+                "line": 3,
+                "modifierKind": [
+                    113
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "title",
+                        "type": "string",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "path",
+                        "type": "string",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "component",
+                        "type": "Type<any>",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "component",
+                    "type": "Type<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ]
+                },
+                {
+                    "name": "path",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ]
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        114,
+                        132
+                    ]
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "SideNavItem",
+            "id": "class-SideNavItem-3ce02b22f07608a6d1e413f2c7534b48",
+            "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/models/side-nav-item.model.ts",
+            "type": "class",
+            "sourceCode": "import { Page } from './../../../pages/models/page.model';\nexport class SideNavItem {\n    title: string;\n    path: string;\n    alt: string;\n\n    constructor(page: Page) {\n        this.title = page.title;\n        this.path = page.path;\n        this.alt = `${page.title} link`;\n    }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "page",
+                        "type": "Page"
+                    }
+                ],
+                "line": 5,
+                "jsdoctags": [
+                    {
+                        "name": "page",
+                        "type": "Page",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "alt",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "path",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [
+        {
+            "name": "DevtoolsUiComponent",
+            "id": "component-DevtoolsUiComponent-20f4d98549bb432ba884eb8537e27690",
+            "file": "projects/impurity/devtools-ui/src/lib/devtools-ui.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-ui",
+            "styleUrls": [
+                "./devtools-ui.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./devtools-ui.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "icon",
+                    "line": 13,
+                    "type": "Image"
+                },
+                {
+                    "name": "pages",
+                    "line": 14,
+                    "type": "Page[]"
+                },
+                {
+                    "name": "title",
+                    "line": 12,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "sideNavItems",
+                    "defaultValue": "[]",
+                    "type": "SideNavItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "createSideNavItems",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 21,
+                    "modifierKind": [
+                        112
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { SideNavItem } from './navigations/side-nav/models/side-nav-item.model';\nimport { Component, Input, OnInit } from '@angular/core';\nimport { Page } from './pages/models/page.model';\nimport Image from './shared/models/image.model';\n\n@Component({\n    selector: 'devtools-ui',\n    templateUrl: './devtools-ui.component.html',\n    styleUrls: ['./devtools-ui.component.scss'],\n})\nexport class DevtoolsUiComponent implements OnInit {\n    @Input() title: string;\n    @Input() icon: Image;\n    @Input() pages: Page[];\n    sideNavItems: SideNavItem[] = [];\n\n    ngOnInit() {\n        this.sideNavItems = this.createSideNavItems();\n    }\n\n    private createSideNavItems() {\n        const sideNavItems: SideNavItem[] = [];\n        if (!!this.pages) {\n            this.pages.forEach((page) => sideNavItems.push(new SideNavItem(page)));\n        }\n        return sideNavItems;\n    }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "#container {\n    top: 64px !important;\n}\n\n@media (max-width: 599px) {\n    #container {\n        top: 56px !important;\n    }\n}\n\n#icon-container {\n    width: 30px;\n    height: 30px;\n}\n\n.z-2 {\n    z-index: 2 !important;\n}\n",
+                    "styleUrl": "./devtools-ui.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-toolbar color=\"primary\" class=\"position-absolute z-2 mat-elevation-z8\">\n    <mat-toolbar-row>\n        <devtools-image id=\"icon-container\" class=\"d-flex flex-column justify-content-center mr-2\" [image]=\"icon\"></devtools-image>\n        <span>{{ title }}</span>\n    </mat-toolbar-row>\n</mat-toolbar>\n<mat-sidenav-container id=\"container\" fullscreen>\n    <mat-sidenav mode=\"side\" opened>\n        <devtools-side-nav [sideNavItems]=\"sideNavItems\"></devtools-side-nav>\n    </mat-sidenav>\n    <mat-sidenav-content>\n        <devtools-page-router [pages]=\"pages\"></devtools-page-router>\n    </mat-sidenav-content>\n</mat-sidenav-container>\n"
+        },
+        {
+            "name": "HealthCardComponent",
+            "id": "component-HealthCardComponent-58da07f7c33dd0c8a8949cf76a7fa88a",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card/health-card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-health-card",
+            "styleUrls": [
+                "./health-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./health-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "healthCard",
+                    "line": 10,
+                    "type": "HealthCard"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { HealthCard } from './../../models/health-card.model';\n\n@Component({\n    selector: 'devtools-health-card',\n    templateUrl: './health-card.component.html',\n    styleUrls: ['./health-card.component.scss'],\n})\nexport class HealthCardComponent {\n    @Input() healthCard: HealthCard;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./health-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<mat-card *ngIf=\"healthCard; else noCard\" class=\"card-container mat-elevation-z4\">\n    <mat-card-title class=\"d-flex flex-column align-items-center\">\n        <span>{{ healthCard.title }}</span>\n        <span>{{ healthCard.endpoint }}</span>\n    </mat-card-title>\n</mat-card>\n\n<ng-template #noCard>No Health Card Provided</ng-template>\n"
+        },
+        {
+            "name": "HealthCardListComponent",
+            "id": "component-HealthCardListComponent-2f80875f0d96cf0b14d7115dbcb6abf6",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-health-card-list",
+            "styleUrls": [
+                "./health-card-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./health-card-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "healthCards",
+                    "line": 10,
+                    "type": "HealthCard[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { HealthCard } from './../../models/health-card.model';\n\n@Component({\n    selector: 'devtools-health-card-list',\n    templateUrl: './health-card-list.component.html',\n    styleUrls: ['./health-card-list.component.scss'],\n})\nexport class HealthCardListComponent {\n    @Input() healthCards: HealthCard[];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./health-card-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div *ngIf=\"healthCards?.length; else empty\" class=\"d-flex flex-row flex-wrap w-100 h-100\">\n    <devtools-health-card *ngFor=\"let healthCard of healthCards\" [healthCard]=\"healthCard\" class=\"p-3\"></devtools-health-card>\n</div>\n\n<ng-template #empty>\n    <span>No health cards provided to health page</span>\n</ng-template>\n"
+        },
+        {
+            "name": "HealthPageComponent",
+            "id": "component-HealthPageComponent-a9aab204ccc83e57bb0f82cad1536f11",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-health-page",
+            "styleUrls": [
+                "./health-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./health-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "healthPage",
+                    "type": "HealthPage",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ActivatedRoute } from '@angular/router';\nimport { HealthPage } from './models/health-page.model';\n\n@Component({\n    selector: 'devtools-health-page',\n    templateUrl: './health-page.component.html',\n    styleUrls: ['./health-page.component.scss'],\n})\nexport class HealthPageComponent {\n    healthPage: HealthPage;\n\n    public constructor(private readonly route: ActivatedRoute) {\n        this.healthPage = route.snapshot.data.page;\n    }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./health-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute"
+                    }
+                ],
+                "line": 11,
+                "modifierKind": [
+                    114
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<devtools-page-container *ngIf=\"healthPage; else noPage\">\n    <page-title>\n        {{ healthPage.title }}\n    </page-title>\n    <page-content>\n        <devtools-health-card-list [healthCards]=\"healthPage.healthCards\"></devtools-health-card-list>\n    </page-content>\n</devtools-page-container>\n\n<ng-template #noPage>No Health Page Provided</ng-template>\n"
+        },
+        {
+            "name": "ImageComponent",
+            "id": "component-ImageComponent-2664995ed6ceba8de8bf980dc041b09a",
+            "file": "projects/impurity/devtools-ui/src/lib/shared/components/image/image.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-image",
+            "styleUrls": [
+                "./image.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./image.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "image",
+                    "line": 10,
+                    "type": "Image"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport Image from '../../models/image.model';\n\n@Component({\n    selector: 'devtools-image',\n    templateUrl: './image.component.html',\n    styleUrls: ['./image.component.scss'],\n})\nexport class ImageComponent {\n    @Input() image: Image;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./image.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<img *ngIf=\"image; else noImage\" class=\"img-fluid\" src=\"{{ image.src }}\" alt=\"{{ image.alt }}\" />\n\n<ng-template #noImage>No image provided</ng-template>\n"
+        },
+        {
+            "name": "LinkCardComponent",
+            "id": "component-LinkCardComponent-c805fcc14549184d62207edc6c432422",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-link-card",
+            "styleUrls": [
+                "./link-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./link-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "linkCard",
+                    "line": 10,
+                    "type": "LinkCard"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { LinkCard } from './../../models/link-card.model';\n\n@Component({\n    selector: 'devtools-link-card',\n    templateUrl: './link-card.component.html',\n    styleUrls: ['./link-card.component.scss'],\n})\nexport class LinkCardComponent {\n    @Input() linkCard: LinkCard;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".card-container {\n    width: 10rem;\n}\n\n.image-container {\n    max-width: 4.6875rem;\n    max-height: 4.6875rem;\n}\n",
+                    "styleUrl": "./link-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<mat-card *ngIf=\"linkCard; else noCard\" class=\"card-container mat-elevation-z4\">\n    <mat-card-title class=\"d-flex flex-column align-items-center\">\n        <devtools-image class=\"image-container pb-3\" [image]=\"linkCard.image\"></devtools-image>\n        <span>{{ linkCard.link.label }}</span>\n    </mat-card-title>\n    <mat-card-subtitle *ngIf=\"linkCard.description\" class=\"mt-2 d-flex flex-column\">\n        <mat-divider></mat-divider>\n        <span class=\"pt-3 text-center\">{{ linkCard.description }}</span>\n    </mat-card-subtitle>\n    <mat-card-subtitle class=\"mt-2 d-flex flex-column\">\n        <mat-divider></mat-divider>\n        <div class=\"d-flex flex-row mt-3 justify-content-center align-items-center\">\n            <button mat-icon-button color=\"accent\" aria-label=\"Go to link\">\n                <mat-icon>launch</mat-icon>\n            </button>\n            <button mat-icon-button color=\"accent\" aria-label=\"Go to link\">\n                <mat-icon>launch</mat-icon>\n            </button>\n            <button mat-icon-button color=\"accent\" aria-label=\"Go to link\">\n                <mat-icon>launch</mat-icon>\n            </button>\n        </div>\n    </mat-card-subtitle>\n</mat-card>\n\n<ng-template #noCard>No Link Card Provided</ng-template>\n"
+        },
+        {
+            "name": "LinkCardListComponent",
+            "id": "component-LinkCardListComponent-5ca89e2068a0a76c4a1378ee57ccc53d",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-link-card-list",
+            "styleUrls": [
+                "./link-card-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./link-card-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "linkCards",
+                    "line": 10,
+                    "type": "LinkCard[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { LinkCard } from './../../models/link-card.model';\nimport { Component, Input } from '@angular/core';\n\n@Component({\n    selector: 'devtools-link-card-list',\n    templateUrl: './link-card-list.component.html',\n    styleUrls: ['./link-card-list.component.scss'],\n})\nexport class LinkCardListComponent {\n    @Input() linkCards: LinkCard[];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./link-card-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div *ngIf=\"linkCards?.length; else empty\" class=\"d-flex flex-row flex-wrap w-100 h-100\">\n    <devtools-link-card *ngFor=\"let linkCard of linkCards\" [linkCard]=\"linkCard\" class=\"p-3\"></devtools-link-card>\n</div>\n\n<ng-template #empty>\n    <span>No links provided to link page</span>\n</ng-template>\n"
+        },
+        {
+            "name": "LinkComponent",
+            "id": "component-LinkComponent-de8a944c0b969a71ac3ece4952f139df",
+            "file": "projects/impurity/devtools-ui/src/lib/shared/components/link/link.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-link",
+            "styleUrls": [
+                "./link.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./link.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "link",
+                    "line": 10,
+                    "type": "Link"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import Link from '../../models/link.model';\nimport { Component, Input } from '@angular/core';\n\n@Component({\n    selector: 'devtools-link',\n    templateUrl: './link.component.html',\n    styleUrls: ['./link.component.scss'],\n})\nexport class LinkComponent {\n    @Input() link: Link;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./link.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div *ngIf=\"link; else noLink\">\n    <ng-container *ngIf=\"!link.isInternal; else internal\">\n        <!-- FIXME: External links are broken -->\n        <a href=\"{{ link.href }}\">\n            <span>{{ link.label }}</span>\n        </a>\n    </ng-container>\n\n    <ng-template #internal>\n        <a [routerLink]=\"link.href\">\n            <span>{{ link.label }}</span>\n        </a>\n    </ng-template>\n</div>\n\n<ng-template #noLink>No Link Provided</ng-template>\n"
+        },
+        {
+            "name": "LinkPageComponent",
+            "id": "component-LinkPageComponent-baacd85fceb9203ef3786f572e5c16e6",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-link-page",
+            "styleUrls": [
+                "./link-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./link-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "linkPage",
+                    "type": "LinkPage",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ActivatedRoute } from '@angular/router';\nimport { LinkPage } from './models/link-page.model';\n\n@Component({\n    selector: 'devtools-link-page',\n    templateUrl: './link-page.component.html',\n    styleUrls: ['./link-page.component.scss'],\n})\nexport class LinkPageComponent {\n    linkPage: LinkPage;\n\n    public constructor(private readonly route: ActivatedRoute) {\n        this.linkPage = route.snapshot.data.page;\n    }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./link-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute"
+                    }
+                ],
+                "line": 11,
+                "modifierKind": [
+                    114
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<devtools-page-container *ngIf=\"linkPage; else noPage\">\n    <page-title>\n        {{ linkPage.title }}\n    </page-title>\n    <page-content>\n        <devtools-link-card-list [linkCards]=\"linkPage.linkCards\"></devtools-link-card-list>\n    </page-content>\n</devtools-page-container>\n\n<ng-template #noPage>No Link Page Provided</ng-template>\n"
+        },
+        {
+            "name": "NavigationContainerComponent",
+            "id": "component-NavigationContainerComponent-b50da868fbb28ec6a20e1b117fb935b6",
+            "file": "projects/impurity/devtools-ui/src/lib/containers/components/navigation-container/navigation-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-navigation-container",
+            "styleUrls": [
+                "./navigation-container.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navigation-container.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'devtools-navigation-container',\n  templateUrl: './navigation-container.component.html',\n  styleUrls: ['./navigation-container.component.scss']\n})\nexport class NavigationContainerComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./navigation-container.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>navigation-container works!</p>\n"
+        },
+        {
+            "name": "PageContainerComponent",
+            "id": "component-PageContainerComponent-6cd2f071f5d3336da5f32b33a17295b0",
+            "file": "projects/impurity/devtools-ui/src/lib/containers/components/page-container/page-container.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-page-container",
+            "styleUrls": [
+                "./page-container.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./page-container.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n    selector: 'devtools-page-container',\n    templateUrl: './page-container.component.html',\n    styleUrls: ['./page-container.component.scss'],\n})\nexport class PageContainerComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./page-container.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<mat-toolbar color=\"accent\" class=\"mat-elevation-z6\">\n    <mat-toolbar-row>\n        <ng-content select=\"page-title\"></ng-content>\n    </mat-toolbar-row>\n</mat-toolbar>\n\n<ng-content select=\"page-content\"></ng-content>\n"
+        },
+        {
+            "name": "PageRouterComponent",
+            "id": "component-PageRouterComponent-71a6610286dcd73aabaf0c99983c2794",
+            "file": "projects/impurity/devtools-ui/src/lib/pages/page-router/page-router.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-page-router",
+            "styleUrls": [
+                "./page-router.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./page-router.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "pages",
+                    "line": 11,
+                    "type": "Page[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { Page } from '../models/page.model';\nimport { RouterService } from './services/router.service';\n\n@Component({\n    selector: 'devtools-page-router',\n    templateUrl: './page-router.component.html',\n    styleUrls: ['./page-router.component.scss'],\n})\nexport class PageRouterComponent implements OnInit {\n    @Input() pages: Page[];\n\n    constructor(private readonly routerService: RouterService) {}\n\n    ngOnInit() {\n        if (!!this.pages && !!this.pages.length) {\n            this.routerService.generateRoutes(this.pages);\n        }\n    }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./page-router.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "routerService",
+                        "type": "RouterService"
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "routerService",
+                        "type": "RouterService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div *ngIf=\"pages && pages.length > 0; else noPages\">\n    <router-outlet></router-outlet>\n</div>\n\n<ng-template #noPages>No Pages Provided</ng-template>\n"
+        },
+        {
+            "name": "SideNavComponent",
+            "id": "component-SideNavComponent-78736c21be0a6502a5548903a3622603",
+            "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-side-nav",
+            "styleUrls": [
+                "./side-nav.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./side-nav.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "sideNavItems",
+                    "line": 10,
+                    "type": "SideNavItem[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { SideNavItem } from './models/side-nav-item.model';\n\n@Component({\n    selector: 'devtools-side-nav',\n    templateUrl: './side-nav.component.html',\n    styleUrls: ['./side-nav.component.scss'],\n})\nexport class SideNavComponent {\n    @Input() sideNavItems: SideNavItem[];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./side-nav.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<ng-container *ngIf=\"sideNavItems; else empty\">\n    <devtools-side-nav-item-list [sideNavItems]=\"sideNavItems\"></devtools-side-nav-item-list>\n</ng-container>\n\n<ng-template #empty>No Side Nav Items Provided</ng-template>\n"
+        },
+        {
+            "name": "SideNavItemComponent",
+            "id": "component-SideNavItemComponent-4909b4884598b8ee6370fc30c3f2371d",
+            "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-side-nav-item",
+            "styleUrls": [
+                "./side-nav-item.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./side-nav-item.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "sideNavItem",
+                    "line": 10,
+                    "type": "SideNavItem"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { SideNavItem } from './../../models/side-nav-item.model';\nimport { Component, OnInit, Input } from '@angular/core';\n\n@Component({\n    selector: 'devtools-side-nav-item',\n    templateUrl: './side-nav-item.component.html',\n    styleUrls: ['./side-nav-item.component.scss'],\n})\nexport class SideNavItemComponent {\n    @Input() sideNavItem: SideNavItem;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./side-nav-item.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<ng-container *ngIf=\"sideNavItem; else empty\">\n    <div matRipple class=\"d-flex flex-row\">\n        <a class=\"justify-content-center\" mat-list-item [routerLink]=\"sideNavItem.path\" routerLinkActive=\"active\">\n            <span class=\"w-100 text-center\">{{ sideNavItem.title }}</span>\n        </a>\n    </div>\n</ng-container>\n\n<ng-template #empty>No Side Nav Item Provided</ng-template>\n"
+        },
+        {
+            "name": "SideNavItemListComponent",
+            "id": "component-SideNavItemListComponent-31dc2f20d0e859a12acc46fd49312ecd",
+            "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "devtools-side-nav-item-list",
+            "styleUrls": [
+                "./side-nav-item-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./side-nav-item-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "sideNavItems",
+                    "line": 10,
+                    "type": "SideNavItem[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "trackByFn",
+                    "args": [
+                        {
+                            "name": "index",
+                            "type": "number"
+                        },
+                        {
+                            "name": "sideNavItem",
+                            "type": "SideNavItem"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "number",
+                    "typeParameters": [],
+                    "line": 12,
+                    "jsdoctags": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "sideNavItem",
+                            "type": "SideNavItem",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { SideNavItem } from './../../models/side-nav-item.model';\n\n@Component({\n    selector: 'devtools-side-nav-item-list',\n    templateUrl: './side-nav-item-list.component.html',\n    styleUrls: ['./side-nav-item-list.component.scss'],\n})\nexport class SideNavItemListComponent {\n    @Input() sideNavItems: SideNavItem[];\n\n    trackByFn(index: number, sideNavItem: SideNavItem) {\n        return index;\n    }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./side-nav-item-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<ng-container *ngIf=\"sideNavItems?.length; else empty\">\n    <div class=\"d-flex flex-column\" *ngFor=\"let sideNavItem of sideNavItems; trackBy: trackByFn\">\n        <mat-list>\n            <devtools-side-nav-item [sideNavItem]=\"sideNavItem\"></devtools-side-nav-item>\n        </mat-list>\n    </div>\n</ng-container>\n\n<ng-template #empty>No Side Nav Items Provided</ng-template>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "ContainersModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "NavigationContainerComponent"
+                        },
+                        {
+                            "name": "PageContainerComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "PageContainerComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "DevtoolsUiModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "DevtoolsUiComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "ContainersModule"
+                        },
+                        {
+                            "name": "DevtoolsUiRoutingModule"
+                        },
+                        {
+                            "name": "NavigationsModule"
+                        },
+                        {
+                            "name": "PagesModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "DevtoolsUiComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "DevtoolsUiRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "HealthPageModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "HealthCardComponent"
+                        },
+                        {
+                            "name": "HealthCardListComponent"
+                        },
+                        {
+                            "name": "HealthPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "ContainersModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "HealthPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LinkPageModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LinkCardComponent"
+                        },
+                        {
+                            "name": "LinkCardListComponent"
+                        },
+                        {
+                            "name": "LinkPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "ContainersModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LinkPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "NavigationsModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "SideNavModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SideNavComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PageRouterModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "PageRouterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "PageRouterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PagesModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "HealthPageModule"
+                        },
+                        {
+                            "name": "LinkPageModule"
+                        },
+                        {
+                            "name": "PageRouterModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "PageRouterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SharedModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ImageComponent"
+                        },
+                        {
+                            "name": "LinkComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ImageComponent"
+                        },
+                        {
+                            "name": "LinkComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SideNavModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "SideNavComponent"
+                        },
+                        {
+                            "name": "SideNavItemComponent"
+                        },
+                        {
+                            "name": "SideNavItemListComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SideNavComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Configurable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card/health-card.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthCardComponent,\n    props: {\n        healthCard: mockCustomizableHealthCard,\n    },\n})"
+            },
+            {
+                "name": "Configurable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthCardListComponent,\n    props: {\n        healthCards: [mockCustomizableHealthCard],\n    },\n})"
+            },
+            {
+                "name": "Configurable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkCardComponent,\n    props: {\n        linkCard: mockCustomizableLinkCard,\n    },\n})"
+            },
+            {
+                "name": "Configurable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkCardListComponent,\n    props: {\n        linkCards: object('Link card list', [\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n        ]),\n    },\n})"
+            },
+            {
+                "name": "ConfigurablePage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: DevtoolsUiComponent,\n    props: {\n        title: text('App title', 'Personal Application'),\n        icon: mockCustomizableImage,\n        pages: [mockLinkPage, mockHealthPage],\n    },\n})"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/test.ts",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "Customizable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthPageComponent,\n    props: {\n        healthPage: mockCustomizableHealthPage,\n    },\n})"
+            },
+            {
+                "name": "Customizable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: customizableLinkPage,\n    },\n})"
+            },
+            {
+                "name": "CustomizableImage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/shared/components/image/image.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: ImageComponent,\n    props: {\n        image: mockCustomizableImage,\n    },\n})"
+            },
+            {
+                "name": "CustomizableLink",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/shared/components/link/link.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkComponent,\n    props: {\n        link: mockCustomizableLink,\n    },\n})"
+            },
+            {
+                "name": "customizableLinkPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "",
+                "defaultValue": "new LinkPage(text('Title', 'Link Page'), text('Url path', 'test-path'), [\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n])"
+            },
+            {
+                "name": "descriptionLinkPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "",
+                "defaultValue": "new LinkPage('Links with description on this page', 'description-links', [\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n])"
+            },
+            {
+                "name": "Empty",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: SideNavComponent,\n    props: {\n        sideNavItems: [],\n    },\n})"
+            },
+            {
+                "name": "Empty",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: SideNavItemComponent,\n    props: {},\n})"
+            },
+            {
+                "name": "Empty",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: SideNavItemListComponent,\n    props: {\n        sideNavItems: [],\n    },\n})"
+            },
+            {
+                "name": "FewCards",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthCardListComponent,\n    props: {\n        healthCards: [mockCustomizableHealthCard, mockCustomizableHealthCard],\n    },\n})"
+            },
+            {
+                "name": "FewHealthCards",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthPageComponent,\n    props: {\n        healthPage: mockFewHealthLinksHealthPage,\n    },\n})"
+            },
+            {
+                "name": "FewLinks",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: fewLinksLinkPage,\n    },\n})"
+            },
+            {
+                "name": "fewLinksLinkPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "",
+                "defaultValue": "new LinkPage('Few links on this page', 'few-links', [\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n])"
+            },
+            {
+                "name": "ManyCards",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthCardListComponent,\n    props: {\n        healthCards: [\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n        ],\n    },\n})"
+            },
+            {
+                "name": "ManyHealthCards",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: HealthPageComponent,\n    props: {\n        healthPage: mockManyHealthLinksHealthPage,\n    },\n})"
+            },
+            {
+                "name": "ManyLink",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: manyLinksLinkPage,\n    },\n})"
+            },
+            {
+                "name": "manyLinksLinkPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "",
+                "defaultValue": "new LinkPage('Many links on this page', 'many-links', [\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n])"
+            },
+            {
+                "name": "mockCustomizableHealthCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/health-card.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    title: text('Page title', 'Customizable Health Page'),\n    endpoint: text('Health Endpoint', 'test'),\n} as HealthCard"
+            },
+            {
+                "name": "mockCustomizableHealthPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "",
+                "defaultValue": "new HealthPage(text('Title', 'Health Page'), text('Url path', 'test-path'), [\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n])"
+            },
+            {
+                "name": "mockCustomizableImage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/image.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    src: text('Image src', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),\n    alt: text('Image alt', 'BitBucket icon'),\n} as Image"
+            },
+            {
+                "name": "mockCustomizableLink",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                "type": "Link",
+                "defaultValue": "{\n    href: text('Link href', 'www.google.com'),\n    label: text('Link alt', 'Google link'),\n    isInternal: boolean('Internal', false),\n}"
+            },
+            {
+                "name": "mockCustomizableLinkCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    image: mockCustomizableImage,\n    link: mockCustomizableLink,\n    description: text('Optional description', 'Repositories'),\n} as LinkCard"
+            },
+            {
+                "name": "mockExternalLink",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                "type": "Link",
+                "defaultValue": "{\n    href: 'www.google.com',\n    label: 'Sample alt 2',\n}"
+            },
+            {
+                "name": "mockFewHealthLinksHealthPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "",
+                "defaultValue": "new HealthPage('Few links on this page', 'few-links', [mockHealthCard, mockHealthCard])"
+            },
+            {
+                "name": "mockHealthCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/health-card.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    title: 'Test title',\n    endpoint: 'testUrl',\n} as HealthCard"
+            },
+            {
+                "name": "mockHealthPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "",
+                "defaultValue": "new HealthPage('Health Page', 'health-page-path', [\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n])"
+            },
+            {
+                "name": "mockImage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/image.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    src: 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg',\n    alt: 'Sample alt 1',\n} as Image"
+            },
+            {
+                "name": "mockInternalLink",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                "type": "Link",
+                "defaultValue": "{\n    href: 'www.google.com',\n    label: 'Sample alt 2',\n}"
+            },
+            {
+                "name": "mockLinkCardWithDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    ...mockLinkCardWithoutDescription,\n    description: 'Sample description',\n} as LinkCard"
+            },
+            {
+                "name": "mockLinkCardWithoutDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                "type": "",
+                "defaultValue": "{\n    image: mockImage,\n    link: mockInternalLink,\n} as LinkCard"
+            },
+            {
+                "name": "mockLinkPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "",
+                "defaultValue": "new LinkPage('Link Page', 'link-page-path', [\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n])"
+            },
+            {
+                "name": "mockManyHealthLinksHealthPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "",
+                "defaultValue": "new HealthPage('Many links on this page', 'many-links', [\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n])"
+            },
+            {
+                "name": "noDescriptionLinkPage",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "",
+                "defaultValue": "new LinkPage('No links with description on this page', 'no-description-links', [\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n])"
+            },
+            {
+                "name": "NoPages",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: DevtoolsUiComponent,\n    props: {\n        pages: [],\n    },\n})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/test.ts",
+                "type": "literal type"
+            },
+            {
+                "name": "WithDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkCardComponent,\n    props: {\n        linkCard: mockLinkCardWithDescription,\n    },\n})"
+            },
+            {
+                "name": "WithDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkCardListComponent,\n    props: {\n        linkCards: [\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n        ],\n    },\n})"
+            },
+            {
+                "name": "WithDescriptions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: descriptionLinkPage,\n    },\n})"
+            },
+            {
+                "name": "WithLinks",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: SideNavComponent,\n    props: {\n        sideNavItems: [new SideNavItem(mockCustomizableHealthPage)],\n    },\n})"
+            },
+            {
+                "name": "WithLinks",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: SideNavItemComponent,\n    props: {\n        sideNavItem: new SideNavItem(mockManyHealthLinksHealthPage),\n    },\n})"
+            },
+            {
+                "name": "WithLinks",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: SideNavItemListComponent,\n    props: {\n        sideNavItems: [new SideNavItem(mockManyHealthLinksHealthPage)],\n    },\n})"
+            },
+            {
+                "name": "WithoutDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkCardComponent,\n    props: {\n        linkCard: mockLinkCardWithoutDescription,\n    },\n})"
+            },
+            {
+                "name": "WithoutDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkCardListComponent,\n    props: {\n        linkCards: [\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n        ],\n    },\n})"
+            },
+            {
+                "name": "WithoutDescriptions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: noDescriptionLinkPage,\n    },\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card/health-card.stories.ts": [
+                {
+                    "name": "Configurable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card/health-card.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthCardComponent,\n    props: {\n        healthCard: mockCustomizableHealthCard,\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts": [
+                {
+                    "name": "Configurable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthCardListComponent,\n    props: {\n        healthCards: [mockCustomizableHealthCard],\n    },\n})"
+                },
+                {
+                    "name": "FewCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthCardListComponent,\n    props: {\n        healthCards: [mockCustomizableHealthCard, mockCustomizableHealthCard],\n    },\n})"
+                },
+                {
+                    "name": "ManyCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthCardListComponent,\n    props: {\n        healthCards: [\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n            mockCustomizableHealthCard,\n        ],\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts": [
+                {
+                    "name": "Configurable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkCardComponent,\n    props: {\n        linkCard: mockCustomizableLinkCard,\n    },\n})"
+                },
+                {
+                    "name": "WithDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkCardComponent,\n    props: {\n        linkCard: mockLinkCardWithDescription,\n    },\n})"
+                },
+                {
+                    "name": "WithoutDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkCardComponent,\n    props: {\n        linkCard: mockLinkCardWithoutDescription,\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts": [
+                {
+                    "name": "Configurable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkCardListComponent,\n    props: {\n        linkCards: object('Link card list', [\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n            mockCustomizableLinkCard,\n        ]),\n    },\n})"
+                },
+                {
+                    "name": "WithDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkCardListComponent,\n    props: {\n        linkCards: [\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n            mockLinkCardWithDescription,\n        ],\n    },\n})"
+                },
+                {
+                    "name": "WithoutDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkCardListComponent,\n    props: {\n        linkCards: [\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n            mockLinkCardWithoutDescription,\n        ],\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts": [
+                {
+                    "name": "ConfigurablePage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: DevtoolsUiComponent,\n    props: {\n        title: text('App title', 'Personal Application'),\n        icon: mockCustomizableImage,\n        pages: [mockLinkPage, mockHealthPage],\n    },\n})"
+                },
+                {
+                    "name": "NoPages",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: DevtoolsUiComponent,\n    props: {\n        pages: [],\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/test.ts",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/test.ts",
+                    "type": "literal type"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts": [
+                {
+                    "name": "Customizable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthPageComponent,\n    props: {\n        healthPage: mockCustomizableHealthPage,\n    },\n})"
+                },
+                {
+                    "name": "FewHealthCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthPageComponent,\n    props: {\n        healthPage: mockFewHealthLinksHealthPage,\n    },\n})"
+                },
+                {
+                    "name": "ManyHealthCards",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: HealthPageComponent,\n    props: {\n        healthPage: mockManyHealthLinksHealthPage,\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts": [
+                {
+                    "name": "Customizable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: customizableLinkPage,\n    },\n})"
+                },
+                {
+                    "name": "FewLinks",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: fewLinksLinkPage,\n    },\n})"
+                },
+                {
+                    "name": "ManyLink",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: manyLinksLinkPage,\n    },\n})"
+                },
+                {
+                    "name": "WithDescriptions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: descriptionLinkPage,\n    },\n})"
+                },
+                {
+                    "name": "WithoutDescriptions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkPageComponent,\n    props: {\n        linkPage: noDescriptionLinkPage,\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/shared/components/image/image.stories.ts": [
+                {
+                    "name": "CustomizableImage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/shared/components/image/image.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: ImageComponent,\n    props: {\n        image: mockCustomizableImage,\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/shared/components/link/link.stories.ts": [
+                {
+                    "name": "CustomizableLink",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/shared/components/link/link.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: LinkComponent,\n    props: {\n        link: mockCustomizableLink,\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/mocks/link-page.mock.ts": [
+                {
+                    "name": "customizableLinkPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new LinkPage(text('Title', 'Link Page'), text('Url path', 'test-path'), [\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n    mockCustomizableLinkCard,\n])"
+                },
+                {
+                    "name": "descriptionLinkPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new LinkPage('Links with description on this page', 'description-links', [\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n])"
+                },
+                {
+                    "name": "fewLinksLinkPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new LinkPage('Few links on this page', 'few-links', [\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n])"
+                },
+                {
+                    "name": "manyLinksLinkPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new LinkPage('Many links on this page', 'many-links', [\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n])"
+                },
+                {
+                    "name": "mockLinkPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new LinkPage('Link Page', 'link-page-path', [\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n    mockLinkCardWithDescription,\n])"
+                },
+                {
+                    "name": "noDescriptionLinkPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new LinkPage('No links with description on this page', 'no-description-links', [\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n    mockLinkCardWithoutDescription,\n])"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts": [
+                {
+                    "name": "Empty",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: SideNavComponent,\n    props: {\n        sideNavItems: [],\n    },\n})"
+                },
+                {
+                    "name": "WithLinks",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: SideNavComponent,\n    props: {\n        sideNavItems: [new SideNavItem(mockCustomizableHealthPage)],\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts": [
+                {
+                    "name": "Empty",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: SideNavItemComponent,\n    props: {},\n})"
+                },
+                {
+                    "name": "WithLinks",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: SideNavItemComponent,\n    props: {\n        sideNavItem: new SideNavItem(mockManyHealthLinksHealthPage),\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts": [
+                {
+                    "name": "Empty",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: SideNavItemListComponent,\n    props: {\n        sideNavItems: [],\n    },\n})"
+                },
+                {
+                    "name": "WithLinks",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n    component: SideNavItemListComponent,\n    props: {\n        sideNavItems: [new SideNavItem(mockManyHealthLinksHealthPage)],\n    },\n})"
+                }
+            ],
+            "projects/impurity/devtools-ui/mocks/health-card.mock.ts": [
+                {
+                    "name": "mockCustomizableHealthCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/health-card.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    title: text('Page title', 'Customizable Health Page'),\n    endpoint: text('Health Endpoint', 'test'),\n} as HealthCard"
+                },
+                {
+                    "name": "mockHealthCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/health-card.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    title: 'Test title',\n    endpoint: 'testUrl',\n} as HealthCard"
+                }
+            ],
+            "projects/impurity/devtools-ui/mocks/health-page.mock.ts": [
+                {
+                    "name": "mockCustomizableHealthPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new HealthPage(text('Title', 'Health Page'), text('Url path', 'test-path'), [\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n    mockCustomizableHealthCard,\n])"
+                },
+                {
+                    "name": "mockFewHealthLinksHealthPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new HealthPage('Few links on this page', 'few-links', [mockHealthCard, mockHealthCard])"
+                },
+                {
+                    "name": "mockHealthPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new HealthPage('Health Page', 'health-page-path', [\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n])"
+                },
+                {
+                    "name": "mockManyHealthLinksHealthPage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                    "type": "",
+                    "defaultValue": "new HealthPage('Many links on this page', 'many-links', [\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n    mockHealthCard,\n])"
+                }
+            ],
+            "projects/impurity/devtools-ui/mocks/image.mock.ts": [
+                {
+                    "name": "mockCustomizableImage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/image.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    src: text('Image src', 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg'),\n    alt: text('Image alt', 'BitBucket icon'),\n} as Image"
+                },
+                {
+                    "name": "mockImage",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/image.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    src: 'https://cdn.worldvectorlogo.com/logos/bitbucket-icon.svg',\n    alt: 'Sample alt 1',\n} as Image"
+                }
+            ],
+            "projects/impurity/devtools-ui/mocks/link.mock.ts": [
+                {
+                    "name": "mockCustomizableLink",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                    "type": "Link",
+                    "defaultValue": "{\n    href: text('Link href', 'www.google.com'),\n    label: text('Link alt', 'Google link'),\n    isInternal: boolean('Internal', false),\n}"
+                },
+                {
+                    "name": "mockExternalLink",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                    "type": "Link",
+                    "defaultValue": "{\n    href: 'www.google.com',\n    label: 'Sample alt 2',\n}"
+                },
+                {
+                    "name": "mockInternalLink",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                    "type": "Link",
+                    "defaultValue": "{\n    href: 'www.google.com',\n    label: 'Sample alt 2',\n}"
+                }
+            ],
+            "projects/impurity/devtools-ui/mocks/link-card.mock.ts": [
+                {
+                    "name": "mockCustomizableLinkCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    image: mockCustomizableImage,\n    link: mockCustomizableLink,\n    description: text('Optional description', 'Repositories'),\n} as LinkCard"
+                },
+                {
+                    "name": "mockLinkCardWithDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    ...mockLinkCardWithoutDescription,\n    description: 'Sample description',\n} as LinkCard"
+                },
+                {
+                    "name": "mockLinkCardWithoutDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                    "type": "",
+                    "defaultValue": "{\n    image: mockImage,\n    link: mockInternalLink,\n} as LinkCard"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/component.mock.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "ComponentMock",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/health-card.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockCustomizableHealthCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/health-card.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockHealthCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockCustomizableHealthPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockFewHealthLinksHealthPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockHealthPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/health-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockManyHealthLinksHealthPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/image.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockCustomizableImage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/image.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockImage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockCustomizableLinkCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockLinkCardWithDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-card.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockLinkCardWithoutDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "customizableLinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "descriptionLinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "fewLinksLinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "manyLinksLinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockLinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link-page.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "noDescriptionLinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockCustomizableLink",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockExternalLink",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/mocks/link.mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockInternalLink",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/containers/components/navigation-container/navigation-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavigationContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/containers/components/page-container/page-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageContainerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/devtools-ui.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DevtoolsUiComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ConfigurablePage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/devtools-ui.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoPages",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SideNavItemListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Empty",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item-list/side-nav-item-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithLinks",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SideNavItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Empty",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/components/side-nav-item/side-nav-item.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithLinks",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/models/side-nav-item.model.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "SideNavItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SideNavComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Empty",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/navigations/side-nav/side-nav.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithLinks",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HealthCardListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Configurable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FewCards",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card-list/health-card-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ManyCards",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card/health-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HealthCardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/components/health-card/health-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Configurable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HealthPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Customizable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FewHealthCards",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/health-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ManyHealthCards",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/models/health-card.model.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "HealthCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/health-page/models/health-page.model.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "HealthPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LinkCardListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Configurable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card-list/link-card-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithoutDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LinkCardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Configurable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/components/link-card/link-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithoutDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LinkPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Customizable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FewLinks",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ManyLink",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithDescriptions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/link-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithoutDescriptions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/models/link-card.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "LinkCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/link-page/models/link-page.model.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "LinkPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/models/page.model.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Page",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/page-router/page-router.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageRouterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/pages/page-router/services/router.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "RouterService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/shared/components/image/image.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ImageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/shared/components/image/image.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomizableImage",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/shared/components/link/link.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LinkComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/shared/components/link/link.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomizableLink",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/shared/models/image.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Image",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/lib/shared/models/link.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Link",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/impurity/devtools-ui/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
